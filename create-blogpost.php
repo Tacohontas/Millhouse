@@ -10,6 +10,7 @@ Välj Kategori:
 <option value="1">Solglassögon</option>
 <option value="2">Klockor</option>
 <option value="3">Inreding</option>
+
 </select>
  <br>
 <img src="" alt="Här ska man kunna ladda upp en bild" name="blogpost-img"> <br> <br>
