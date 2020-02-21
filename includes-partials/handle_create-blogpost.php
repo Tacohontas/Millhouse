@@ -32,7 +32,7 @@
 
     if ($errors == true) {
     echo $errorMessages;
-    echo "<a href='./create-blogpost.php'> Prova igen! </a>";
+    echo "<a href='../create-blogpost.php'> Prova igen! </a>";
     die;
     }
     
@@ -51,14 +51,12 @@
 
     $return = $sth->execute();
 
-    print_r($_POST);
-
     if(!$return) {
-  
     print_r($dbh->errorInfo());
     } else {
-       
-        echo "Publicerat!";
+       header("location:../create-blogpost.php");
+       echo "Publicerat!";
+    
     };
 
 
