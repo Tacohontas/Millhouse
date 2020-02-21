@@ -19,5 +19,5 @@
 
 <body>
     <h1>Startsida</h1>
-<a href="index.php">Start</a> | <a href="signup.php">Registrera</a> | <a href="login.php">Logga in</a>
+<a href="index.php">Start</a> | <a href="signup.php">Registrera</a> | <a href="login.php">Logga in</a> | <a href="create-blogpost.php">Skapa inlägg</a>
 <hr>
