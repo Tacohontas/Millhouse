@@ -9,7 +9,7 @@ $email = $_POST['email'];
 // Ifall alla fält ej är ifyllda
 if (empty($username) || empty($password) || empty($email)) {
     // Skickas till login.php med hårdkodad getvariabel som visar error-meddelande
-    header("location:/1E_Millhouse/signup.php?error=emptyvalues");
+    header("location:../signup.php?error=emptyvalues");
     die;
 }
 
@@ -37,7 +37,7 @@ echo "</pre>";
 
 if (!count($result) == 0) {
     // Skicka tillbaka till signup med en hårdkodad GET-variabel som resulterar i felmeddelande.
-    header("location:/1E_Millhouse/signup.php?error=true");
+    header("location:../signup.php?error=true");
     echo "användare finns redan";
 } else {
     // Matar in i DB om användaren ej finns registrerad.
@@ -55,6 +55,6 @@ if (!count($result) == 0) {
         $_SESSION['Password'] = $password;
 
         // Skicka vidare till login.php.
-        header("location:/1E_Millhouse/index.php");
+        header("location:../index.php");
     }
 }
