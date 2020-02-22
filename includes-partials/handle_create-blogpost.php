@@ -9,7 +9,7 @@
 
 
     // --- Ladda upp bild | OBS FUNKAR EJ --- //
-    $target_dir = "uploads/";
+    /* $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -23,7 +23,7 @@
             echo "File is not an image.";
             $uploadOk = 0;
         }
-    }
+    } */
 
 
 
@@ -69,12 +69,12 @@
 
     $return = $sth->execute();
 
-    print_r($_POST);
+    //print_r($_POST);
 
     if(!$return) {
     print_r($dbh->errorInfo());
     } else {
-       //header("location:../index.php");
+       header("location:../index.php");
     };
 
 
