@@ -14,7 +14,7 @@ Välj Kategori:
 </select><br>
 Välj bild:
 <input type="file" name="fileToUpload"> <br> <br>
-<input type="submit" value="Skapa inlägg">
+<input type="submit" name="submit" value="Skapa inlägg">
 </form>
 </center>
 
