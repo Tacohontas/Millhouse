@@ -14,7 +14,7 @@ if (empty($username) || empty($password) || empty($email)) {
 }
 
 // SQL-Queries
-$query = "INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ('$username', '$password', '$email', '0');";
+$query = "INSERT INTO Users(Username, Password, Email) VALUES ('$username', '$password', '$email');";
 // "isAdmin = 0" betyder att användare ej har admin-rättigheter.
 $getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password' OR Username='$username';";
 
