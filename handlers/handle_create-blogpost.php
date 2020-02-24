@@ -66,40 +66,46 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $errors = false;
     $errorMessages = "";
 
-    if (empty($title) && $_GET['updatePost'] == false) {
+    if (empty($title)) {
         $errorMessages .= "Skriv en rubrik <br />";
         $errors = true;
     }
 
-    if (empty($blogpost) && $_GET['updatePost'] == false) {
+    if (empty($blogpost)) {
         $errorMessages .= "Skriv ditt blogginlägg <br />";
         $errors = true;
     }
 
-    if (empty($CatID) && $_GET['updatePost'] == false) {
+    if (empty($CatID)) {
         $errorMessages .= "Välj kategori <br />";
         $errors = true;
     }
 
     if ($errors == true) {
         echo $errorMessages;
-        echo "<a href='../create-blogpost.php'> Prova igen! </a>";
+        
+        // Ifall man lämnat fält tomma i redigerings-miljön:
+        if(isset($_GET['updatePost']) && $_GET['updatePost'] == true){
+            echo "<a href='../views/edit-blogpost.php?postId=".$_POST['postId']."'> Prova att redigera igen! </a>";
+        } else {
+            echo "<a href='../views/create-blogpost.php'> Prova att skriva inlägg igen! </a>";
+        }
         die;
     }
 
 
     //--- QUERIES till DB ---//
     if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
-        if(!empty($blogpost) && !empty($title)){
+
         $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId;";
         $sth = $dbh->prepare($query);
-        $sth->bindParam(':postId', $_POST['postId']); // Hacker attack-prevent
-        }
+        $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
+        
     } else {
         $query = "INSERT INTO Posts ( Title, Content, IMG, CategoriesId, Usersid) VALUES (:title, :blogpost, :blogpostImg, :catid, 1);";
             //--- Endast admin kan skapa blogginlägg, därav alltid 1 ---//  
         $sth = $dbh->prepare($query);
-        $sth->bindParam(':blogpostImg', $fileDestination); // Hacker attack-prevent
+        $sth->bindParam(':blogpostImg', $fileDestination); // Påbörjad Hacker attack-prevent
     }
 
     //--- Hacker attack prevent - Bind variablerna ---//
