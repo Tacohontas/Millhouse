@@ -1,6 +1,9 @@
-  <?php  
+  <?php
     include("../includes-partials/database_connection.php");
 
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
 
     //--- Hämtar innehåll till DB ---//
     $title = (!empty($_POST['blogpost_title']) ? $_POST['blogpost_title'] : "");
@@ -9,9 +12,9 @@
 
 
     // --- Ladda upp bild  --- //
-     if(isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
         $file = $_FILES['fileToUpload'];
-        
+
         $fileName = $_FILES['fileToUpload']['name'];
         $fileTmpName = $_FILES['fileToUpload']['tmp_name'];
         $fileSize = $_FILES['fileToUpload']['size'];
@@ -23,17 +26,17 @@
         //Vilka filer vi tillåter
         $allowed = array('jpg', 'jpeg', 'png', 'pdf');
 
-        if(in_array($fileActualExt, $allowed)) {
+        if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 5000000) {
-                    $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = '../images/uploads/'.$fileNameNew;
+                    $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                    $fileDestination = '../images/uploads/' . $fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                 } else {
                     echo "Filen är för stor";
-                };  
+                };
             } else {
-               echo "Det gick inte att lägga upp filen du valt";
+                echo "Det gick inte att lägga upp filen du valt";
             };
         } else {
             echo "Denna typ av fil stöds ej";
@@ -48,48 +51,54 @@
     $errors = false;
     $errorMessages = "";
 
-    if( empty($title) ) {
-        $errorMessages .="Skriv en rubrik <br />";
+    if (empty($title) && $_GET['updatePost'] == false) {
+        $errorMessages .= "Skriv en rubrik <br />";
         $errors = true;
     }
 
-    if( empty($blogpost) ) {
-        $errorMessages .="Skriv ditt blogginlägg <br />";
+    if (empty($blogpost) && $_GET['updatePost'] == false) {
+        $errorMessages .= "Skriv ditt blogginlägg <br />";
         $errors = true;
     }
 
-    if( empty($CatID)) {
-        $errorMessages .="Välj kategori <br />";
+    if (empty($CatID) && $_GET['updatePost'] == false) {
+        $errorMessages .= "Välj kategori <br />";
         $errors = true;
     }
 
     if ($errors == true) {
-    echo $errorMessages;
-    echo "<a href='../create-blogpost.php'> Prova igen! </a>";
-    die;
+        echo $errorMessages;
+        echo "<a href='../create-blogpost.php'> Prova igen! </a>";
+        die;
     }
-    
+
 
     //--- QUERIES till DB ---//
-    $query = "INSERT INTO posts ( Title, Content, IMG, CategoriesId, Usersid) VALUES (:title, :blogpost, :blogpostImg, :catid, 1);";
+    if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
+        $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId;";
+        $sth = $dbh->prepare($query);
+        $sth->bindParam(':postId', $_POST['postId']); // Hacker attack-prevent
+    } else {
+        $query = "INSERT INTO Posts ( Title, Content, IMG, CategoriesId, Usersid) VALUES (:title, :blogpost, :blogpostImg, :catid, 1);";
+        $sth = $dbh->prepare($query);
+        $sth->bindParam(':blogpostImg', $fileDestination); // Hacker attack-prevent
+    }
     //--- Endast admin kan skapa blogginlägg, därav alltid 1 ---//
 
     //--- Hacker attack prevent - Bind variablerna ---//
-    $sth = $dbh->prepare($query);
     $sth->bindParam(':title', $title);
     $sth->bindParam(':blogpost', $blogpost);
-    $sth->bindParam(':blogpostImg', $fileDestination );
     $sth->bindParam(':catid', $CatID);
 
     $return = $sth->execute();
 
-    if(!$return) {
-    print_r($dbh->errorInfo());
+    if (!$return) {
+        print_r($dbh->errorInfo());
     } else {
-       header("location:../index.php");
-       echo "det funka";
+        header("location:../index.php");
+        echo "det funka";
     };
 
 
 
-?>
+    ?>
