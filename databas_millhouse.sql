@@ -5,13 +5,13 @@ DROP TABLE IF EXISTS `Categories`;
 
 
 
-CREATE Table Categories(
+CREATE Table categories(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(20) NOT NULL,
     PRIMARY KEY(Id)   
     );
     
-CREATE Table Users(
+CREATE Table users(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Username` VARCHAR(20) NOT NULL,
     `Password` VARCHAR(40) NOT NULL,
@@ -21,7 +21,7 @@ CREATE Table Users(
     PRIMARY KEY(Id)
     ) engine = innoDB;
     
-CREATE Table Posts(
+CREATE Table posts(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Title` VARCHAR(20) NOT NULL, 
     `Content` VARCHAR(2000) NOT NULL,
@@ -34,7 +34,7 @@ CREATE Table Posts(
     FOREIGN KEY(UsersId) REFERENCES Users(Id)
     ) engine = innoDB;
     
-CREATE Table Comments(
+CREATE Table comments(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Content` VARCHAR(200) NOT NULL,
     `Date_posted` DATETIME NOT NULL DEFAULT current_timestamp(),
