@@ -17,7 +17,7 @@ if (isset($_GET['error']) && !empty($_GET['error'])) {
 <form action="./includes-partials/handle_login.php" method="post">
     <input type="text" placeholder="Username" name="username">
     <input type="password" placeholder="Password" name="password">
-    <input type="submit" value="Logga in">
+    <input type="submit" name="submitLogin" value="Logga in">
 </form>
 
 <?php

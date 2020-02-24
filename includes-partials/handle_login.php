@@ -17,7 +17,7 @@ if(empty($username) || empty($password)){
 
 
 
-$getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password'";
+$getquery = "SELECT Id, Username, Password, IsAdmin FROM Users WHERE Username='$username' AND Password='$password'";
 
 $dataFromDB = $dbh->query($getquery);
 $row = $dataFromDB->fetch(PDO::FETCH_ASSOC);
@@ -37,6 +37,7 @@ if(empty($row)){
     // Sparar användarnamn och lösen i SESSION-variabeln. Den är TYP som localstorage i JS. 
     $_SESSION['Username'] = $row['Username'];
     $_SESSION['Password'] = $row['Password'];
+    $_SESSION['IsAdmin'] = $row['IsAdmin'];
 
     header("location:../index.php");
 
