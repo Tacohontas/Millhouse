@@ -1,39 +1,63 @@
-<?php 
+<?php
 include("../includes-partials/header.php");
 include("../includes-partials/database_connection.php");
+
+
+
+
+
 ?>
 
-<?php 
+<h1>Redigera inlägg</h1>
 
-// Skapa query för att redigera inlägg
+<?php
 
-$getquery = "SELECT id, title, content, img, categoriesId, date_posted, UsersId FROM Posts";
-    
+
+session_start();
+
+if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
+    echo $_SESSION['Username'] . " är inloggad!";
+
+
+    // Skapa query för att redigera inlägg
+
+    $getquery = "SELECT id, title, content FROM Posts WHERE Id = " . $_GET['postId'] . ";";
     $dataFromDB = $dbh->query($getquery);
 
-echo "<pre>";
+    echo "<pre>";
 
-while($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {  
+    while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {
 
-echo "<b> Rubrik: </b>" . $row['title'];
-echo "<b> Inlägg: </b>" . $row['content'] ."<br />";
-echo "<b> Kategori: </b>" . $row['categoriesId'] ."<br />";
-echo "<b> Datum: </b>" . $row['date_posted'] ."<br />";
-echo "<b> Bild: </b>" . $row['img'] ."<br />";
-echo "<b> Skribent: </b>" . $row['UsersId'] ."<br />";
-echo "<a href='real_edit-blogpost.php?postId=".$row['id']."'>redigera</a>
-";
+        echo '<center>
+    <form action="../handlers/handle_create-blogpost.php?updatePost=true" method="POST" enctype="multipart/form-data">
 
-}
+    <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
 
-echo "</pre>"; 
+    <input type="text" name="blogpost_title" placeholder="Rubrik..." value="' . $row['title'] . '" required> <br> <br>
 
+    <textarea name="blogpost" id="" cols="30" rows="20" required>' . $row['content'] . '</textarea> <br>
+    
+    Välj Kategori:
+    <select name="category">
+    <option value="1">Solglassögon</option>
+    <option value="2">Klockor</option>
+    <option value="3">Inreding</option>
+    </select><br>
+        
+    <input type="submit" value="Redigera inlägg">
+    </form>
+
+    <a href="../handlers/handle_create-blogpost.php?action=delete&id=' . $_GET['postId'] . '">Delete!</a>
+
+
+    </center>';
+    }
+} else {
+    echo "bara admin får blogga :(";
+};
 ?>
-
-
-
 
 
 <?php
-include("../includes-partials/footer.php")
+include("../includes-partials/footer.php");
 ?>

@@ -11,7 +11,7 @@ class BLOGPOST {
     }
 
     public function fetchAll() {
-        $query = "SELECT title, content, img, date_posted, name FROM Posts JOIN categories ON categories.Id = CategoriesId";
+        $query = "SELECT Posts.id, title, content, img, date_posted, name FROM Posts JOIN Categories ON Categories.Id = CategoriesId";
         
         $return_array = $this->databasehandler->query($query);
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);

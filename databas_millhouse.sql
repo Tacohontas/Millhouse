@@ -17,7 +17,7 @@ CREATE Table Users(
     `Password` VARCHAR(40) NOT NULL,
     `Email` VARCHAR(50) NOT NULL, 
     `REG_DATE` DATETIME NOT NULL DEFAULT current_timestamp(),
-    `IsAdmin` BOOLEAN NOT NULL,
+    `IsAdmin` BOOLEAN NOT NULL DEFAULT "0",
     PRIMARY KEY(Id)
     ) engine = innoDB;
     
@@ -45,4 +45,9 @@ CREATE Table Comments(
     FOREIGN KEY(UsersId) REFERENCES Users(Id)
     ) engine = INNODB;
     
-  
+  INSERT INTO Categories(Name) VALUES ("Sunglasses");
+  INSERT INTO Categories(Name) VALUES ("Watches");
+  INSERT INTO Categories(Name) VALUES ("Interior");
+
+INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ("admin", "5f4dcc3b5aa765d61d8327deb882cf99", "admin@millhouse.com", 1);
+
