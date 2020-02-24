@@ -1,5 +1,5 @@
   <?php  
-    include("database_connection.php");
+    include("../includes-partials/database_connection.php");
 
 
     //--- Hämtar innehåll till DB ---//
@@ -27,7 +27,7 @@
             if ($fileError === 0) {
                 if ($fileSize < 5000000) {
                     $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = 'uploads/'.$fileNameNew;
+                    $fileDestination = '../images/uploads/'.$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                 } else {
                     echo "Filen är för stor";

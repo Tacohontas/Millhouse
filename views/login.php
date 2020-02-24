@@ -1,5 +1,5 @@
 <?php
-include("./includes-partials/header.php")
+include("../includes-partials/header.php")
 ?>
 
 <?php
@@ -14,12 +14,12 @@ if (isset($_GET['error']) && !empty($_GET['error'])) {
 ?>
 
 
-<form action="./includes-partials/handle_login.php" method="post">
+<form action="../handlers/handle_login.php" method="post">
     <input type="text" placeholder="Username" name="username">
     <input type="password" placeholder="Password" name="password">
     <input type="submit" name="submitLogin" value="Logga in">
 </form>
 
 <?php
-include("./includes-partials/footer.php");
+include("../includes-partials/footer.php");
 ?>

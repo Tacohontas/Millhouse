@@ -1,5 +1,5 @@
 <?php
-include('database_connection.php');
+include("../includes-partials/database_connection.php");
 
 
 

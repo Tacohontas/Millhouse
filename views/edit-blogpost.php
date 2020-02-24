@@ -1,6 +1,6 @@
 <?php 
-include("./includes-partials/header.php");
-include("./includes-partials/database_connection.php");
+include("../includes-partials/header.php");
+include("../includes-partials/database_connection.php");
 ?>
 
 <?php 
@@ -34,5 +34,5 @@ echo "</pre>";
 
 
 <?php
-include("./includes-partials/footer.php")
+include("../includes-partials/footer.php")
 ?>

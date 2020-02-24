@@ -1,5 +1,6 @@
 <?php
-include("./includes-partials/header.php")
+include("./includes-partials/start_header.php");
+
 ?>
 
 <?php
@@ -9,7 +10,7 @@ session_start();
 if(isset($_SESSION['Username'])){
     echo $_SESSION['Username']." är inloggad!";
     echo "<br>";
-    echo '<a href="./includes-partials/logout.php">Logga ut</a>';
+    echo '<a href="./handlers/logout.php">Logga ut</a>';
 }
 
 
@@ -18,5 +19,5 @@ if(isset($_SESSION['Username'])){
 Startsidan haj haj
 
 <?php
-include("./includes-partials/footer.php")
+include("./includes-partials/footer.php");
 ?>
