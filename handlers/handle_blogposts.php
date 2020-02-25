@@ -83,7 +83,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
         
         // ADMIN ERROR - Om fält lämnats tomma i redigerings-miljön:
         if(isset($_GET['updatePost']) && $_GET['updatePost'] == true){
-            header("location:../views/edit-blogpost.php?postId=".$_POST['postId']."&error=true");
+            header("location:index.php?page=edit&postId=".$_POST['postId']."&error=true");
         } else {
             echo "<a href='../views/create-blogpost.php'> Prova att skriva inlägg igen! </a>";
         }

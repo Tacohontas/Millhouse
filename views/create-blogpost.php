@@ -5,7 +5,7 @@ include("./includes-partials/header.php");
 
 <?php
 
-session_start();
+@session_start();
 
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     echo $_SESSION['Username'] . " är inloggad!";

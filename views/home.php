@@ -6,7 +6,7 @@ include("./includes-partials/database_connection.php");
 <?php
 //--- Visar ett meddelande med den inloggades username från DB + Utloggning---//
 
-session_start();
+@session_start();
 
 if(isset($_SESSION['Username'])){
     echo $_SESSION['Username']." är inloggad!";

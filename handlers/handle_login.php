@@ -9,9 +9,9 @@ $username = htmlspecialchars($username);
 
 
 // Ifall alla fält ej är ifyllda
-if(empty($username) || empty($password)){
+if (empty($username) || empty($password)) {
     // Skickas till login.php med hårdkodad getvariabel som visar error-meddelande
-    header("location:../login.php?error=emptyvalues");
+    header("location:../index.php?page=login&error=emptyvalues");
     die;
 }
 
@@ -26,10 +26,10 @@ $row = $dataFromDB->fetch(PDO::FETCH_ASSOC);
 
 
 // Ifall vårt svar från DB är tomt = finns ingen användare med den infon
-if(empty($row)){
+if (empty($row)) {
     //Skickar tillbaka till signupForm.php med en hårdkodad GET-variabel
     header("location:../login.php?error=true");
-} else{
+} else {
     // Skicka vidare till inloggningslanding
     echo "Du kan logga in";
     session_start();
@@ -39,12 +39,10 @@ if(empty($row)){
     $_SESSION['Password'] = $row['Password'];
     $_SESSION['IsAdmin'] = $row['IsAdmin'];
 
-    header("location:../index.php");
 
-    
-
+    // if ($_SESSION['IsAdmin'] == 1) {
+    //     header("location:../views/admin.php");
+    // } else {
+        header("location:../index.php");
+    // };
 }
-
-
-?>
-
