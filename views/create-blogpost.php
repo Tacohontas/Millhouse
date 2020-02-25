@@ -7,6 +7,10 @@ include("./includes-partials/header.php");
 
 @session_start();
 
+if(@$_GET['error'] == true){
+    echo "<h3>Du får ej lämna tomma fält!</h3> <br>";
+}
+
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     echo $_SESSION['Username'] . " är inloggad!";
 
@@ -15,7 +19,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
         
         <input type="text" name="blogpost_title" placeholder="Rubrik..." required> <br> <br>
         
-        <textarea name="blogpost" id="" cols="30" rows="20" required>Skapa ditt blogginlägg här...</textarea> <br>
+        <textarea name="blogpost" cols="30" rows="20" required>Skapa ditt blogginlägg här...</textarea> <br>
         
         Välj Kategori:
         <select name="category" id="">
