@@ -34,7 +34,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {
 
         echo '<center>
-    <form action="../handlers/handle_blogposts.php?updatePost=true" method="POST" enctype="multipart/form-data">
+    <form action="./handlers/handle_blogposts.php?updatePost=true" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
 

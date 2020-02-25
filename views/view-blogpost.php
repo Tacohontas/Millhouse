@@ -11,7 +11,7 @@ include("./includes-partials/database_connection.php");
   $BlogPosts->fetchByPostId($_GET['postId']);
 
   foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
-      echo "<hr />";
+      
       echo"<b> Rubrik: </b>" . $BlogPost['title']."<br />";
       echo"<b> Inlägg: </b>" . $BlogPost['content'] ."<br />";
       echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";

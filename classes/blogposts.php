@@ -34,7 +34,7 @@ class BLOGPOST_TEST {
     }
 
     public function fetchByPostID($postId) {
-        $query = "SELECT Posts.id, title, content, img, date_posted FROM Posts WHERE Posts.id = ".$postId.";";
+        $query = "SELECT Posts.id, title, content, img, date_posted, name FROM Posts JOIN Categories ON Categories.Id = CategoriesId WHERE Posts.id = ".$postId.";";
         
         $return_array = $this->databasehandler->query($query);
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
