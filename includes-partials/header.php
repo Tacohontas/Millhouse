@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,5 +20,5 @@
 
 <body>
     <h1>Startsida</h1>
-<a href="../index.php">Start</a> | <a href="login.php">Logga in</a> | <a href="signup.php">Registrera</a> | <a href="create-blogpost.php">Skapa inlägg</a> 
+    <a href="views/home.php?page=home">Start</a> | <a href="index.php?page=signup">Registrera</a> | <a href="index.php?page=login">Logga in</a> | <a href="index.php?page=create">Skapa inlägg</a> 
 <hr>

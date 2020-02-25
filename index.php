@@ -3,6 +3,24 @@ include("./includes-partials/start_header.php");
 include("./classes/blogposts.php");
 include("./includes-partials/database_connection.php");
 
+$page =(isset($_GET['page']) ? $_GET['page'] : '');
+
+if($page == "signup") {
+
+    include("views/signup.php");
+
+} else if($page == "login") {
+
+    include("views/login.php");
+
+} else if($page == "create") {
+
+    include("views/create-blogpost.php");
+
+} else {
+
+    include("views/home.php");
+};
 
 
 ?>
