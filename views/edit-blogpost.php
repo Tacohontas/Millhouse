@@ -10,6 +10,13 @@ include("../includes-partials/database_connection.php");
 
 session_start();
 
+
+// ERROR - Ifall du lämnat tomma fält (redirectat från handle_blogposts)
+if(@$_GET['error'] == true){
+    echo "<h3>Du får ej lämna tomma fält!</h3> <br>";
+}
+
+
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     echo $_SESSION['Username'] . " är inloggad!";
 
@@ -20,6 +27,10 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     $dataFromDB = $dbh->query($getquery);
 
     echo "<pre>";
+    print_r($_GET);
+
+
+    // -- Hämtar inlägg som skall redigeras
 
     while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {
 
