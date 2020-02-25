@@ -1,5 +1,5 @@
 <?php
-include("../includes-partials/header.php")
+include("./includes-partials/header.php")
 ?>
 
 <h1>Registrera användare</h1>
@@ -16,7 +16,7 @@ if (isset($_GET['error']) && !empty($_GET['error'])) {
 
 ?>
 
-<form method="POST" action="../handlers/handle_signup.php">
+<form method="POST" action="./handlers/handle_signup.php">
     <input type="text" name="username" placeholder="username" >
     <input type="password" name="password" placeholder="password" ><br>
     <input type="email" name="email" placeholder="mail" ><br>
@@ -28,5 +28,5 @@ if (isset($_GET['error']) && !empty($_GET['error'])) {
 
 
 <?php
-include("../includes-partials/footer.php")
+include("./includes-partials/footer.php")
 ?>

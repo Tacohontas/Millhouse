@@ -1,11 +1,6 @@
 <?php
 include("../includes-partials/header.php");
 include("../includes-partials/database_connection.php");
-
-
-
-
-
 ?>
 
 <h1>Redigera inlägg</h1>

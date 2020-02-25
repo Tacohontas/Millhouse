@@ -1,5 +1,5 @@
 <?php
-include("../includes-partials/header.php");
+include("./includes-partials/header.php");
 
 ?>
 
@@ -11,7 +11,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     echo $_SESSION['Username'] . " är inloggad!";
 
     echo '<center>
-        <form action="../handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data">
+        <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data">
         
         <input type="text" name="blogpost_title" placeholder="Rubrik..." required> <br> <br>
         
@@ -37,5 +37,5 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
 
 
 <?php
-include("../includes-partials/footer.php");
+include("./includes-partials/footer.php");
 ?>
