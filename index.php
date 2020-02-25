@@ -3,6 +3,26 @@ include("./includes-partials/start_header.php");
 include("./classes/blogposts.php");
 include("./includes-partials/database_connection.php");
 
+$page =(isset($_GET['page']) ? $_GET['page'] : '');
+
+if($page == "signup") {
+
+    include("views/signup.php");
+
+} else if($page == "login") {
+
+    include("views/login.php");
+
+} else if($page == "create") {
+
+    include("views/create-blogpost.php");
+
+} else {
+
+    include("views/home.php");
+};
+
+
 ?>
 
 <?php
@@ -25,7 +45,7 @@ if(isset($_SESSION['Username'])){
         echo"<b> Inlägg: </b>" . $BlogPost['content'] ."<br />";
         echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
         echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
-        echo"<b> Bild: </b>" . "<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' height=300 width=200>" ."<br />";
+        echo"<b> Bild: </b>" . "<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";
     }
 } else {
     echo "<marquee><h1>LOGGA IN TACK!</h1></marquee>";
