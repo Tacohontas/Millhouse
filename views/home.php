@@ -25,9 +25,6 @@ if(isset($_SESSION['Username'])){
         echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";
         echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
         echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
-        if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-        echo "<a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera |</a>";
-        };
        
     }
 } else {
