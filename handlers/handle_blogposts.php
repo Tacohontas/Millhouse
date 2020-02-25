@@ -60,7 +60,6 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
     $title = htmlspecialchars($title);
     $blogpost = htmlspecialchars($blogpost);
-    // $CatId = htmlspecialchars($CatId);
 
     //--- ERROR meddelanden för create-blogpost ---//
     $errors = false;
