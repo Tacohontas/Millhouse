@@ -17,8 +17,6 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     header("location:../index.php");
 } else {
 
-
-
     //--- Hämtar innehåll till DB ---//
     $title = (!empty($_POST['blogpost_title']) ? $_POST['blogpost_title'] : "");
     $blogpost = (!empty($_POST['blogpost']) ? $_POST['blogpost'] : "");
@@ -83,9 +81,9 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     if ($errors == true) {
         echo $errorMessages;
         
-        // Ifall man lämnat fält tomma i redigerings-miljön:
+        // ADMIN ERROR - Om fält lämnats tomma i redigerings-miljön:
         if(isset($_GET['updatePost']) && $_GET['updatePost'] == true){
-            echo "<a href='../views/edit-blogpost.php?postId=".$_POST['postId']."'> Prova att redigera igen! </a>";
+            header("location:../views/edit-blogpost.php?postId=".$_POST['postId']."&error=true");
         } else {
             echo "<a href='../views/create-blogpost.php'> Prova att skriva inlägg igen! </a>";
         }
