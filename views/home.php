@@ -16,7 +16,7 @@ if(isset($_SESSION['Username'])){
 
     //--- HÄMTAR ALLA BLOGGINLÄGG ---//
     $BlogPosts = new BLOGPOST($dbh);
-    $BlogPosts->fetchAll();
+    $BlogPosts->fetchAll('published');
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
         echo "<hr>";

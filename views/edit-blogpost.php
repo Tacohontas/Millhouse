@@ -50,7 +50,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     <input type="submit" value="Redigera inlägg">
     </form>
 
-    <a href="../handlers/handle_blogposts.php?action=delete&id=' . $_GET['postId'] . '">Delete!</a>
+    <a href="./handlers/handle_blogposts.php?action=delete&id=' . $_GET['postId'] . '">Delete!</a>
 
 
     </center>';

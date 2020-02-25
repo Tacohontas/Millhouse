@@ -2,8 +2,28 @@
     include("../includes-partials/database_connection.php");
 
     echo "<pre>";
-    print_r($_POST);
+    print_r($_GET);
     echo "</pre>";
+
+
+// -- GET VARIABLAR -- // 
+$action = $_GET['action'];
+
+// --- Publicera / dölj inlägg --- // 
+
+if ($action == "hide" || $action == "publish"){
+    $isPublished = ($action == 'hide') ? $isPublished = 0 : $isPublished = 1;
+    // Här hämtar vi vår hårdkodade _GET-variabel
+    $query = "UPDATE Posts SET IsPublished = ".$isPublished." WHERE Id = :postsId ;";
+    $sth = $dbh->prepare($query);
+    $postsId = $_GET['id'];
+    $sth->bindParam(':postsId', $postsId);
+    $return = $sth->execute();
+    
+    header("location:../index.php?page=admin");
+}
+
+
 
 // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
@@ -13,6 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $postsId = $_GET['id'];
     $sth->bindParam(':postsId', $postsId);
     $return = $sth->execute();
+    
 
     header("location:../index.php");
 } else {
@@ -83,7 +104,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
         
         // ADMIN ERROR - Om fält lämnats tomma i redigerings-miljön:
         if(isset($_GET['updatePost']) && $_GET['updatePost'] == true){
-            header("location:index.php?page=edit&postId=".$_POST['postId']."&error=true");
+            header("location:../index.php?page=edit&postId=".$_POST['postId']."&error=true");
         } else {
             echo "<a href='../views/create-blogpost.php'> Prova att skriva inlägg igen! </a>";
         }
@@ -115,7 +136,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     if (!$return) {
         print_r($dbh->errorInfo());
     } else {
-        header("location:../index.php");
+        header("location:../index.php?page=view&postId=".@$_POST['postId']."");
         echo "det funka";
     };
 

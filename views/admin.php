@@ -17,7 +17,13 @@ foreach ($BlogPosts->getBlogPosts() as $BlogPost) {
     echo "<a href='index.php?page=view&postId=".$BlogPost['id']."'> Läs inlägg</a><br>";
     echo "<a href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera</a><br>";
     echo '<a href="./handlers/handle_blogposts.php?action=delete&id=' . $BlogPost['id'] . '">Delete!</a><br>';
-    echo '<a href="#">Publicera!</a>';
+
+    // Ifall inlägget ej är publicerat så visas "Publicera"-länken. Annars en "Dölj"-länk.
+    if($BlogPost['isPublished'] == 0){
+    echo '<a href="./handlers/handle_blogposts.php?action=publish&id=' . $BlogPost['id'] . '">Publicera!</a>';
+    } else {
+        echo '<a href="./handlers/handle_blogposts.php?action=hide&id=' . $BlogPost['id'] . '">Dölj inlägg</a>';
+    }
 }
 
 

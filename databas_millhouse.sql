@@ -29,6 +29,7 @@ CREATE Table Posts(
     `CategoriesId` INT NOT NULL,
     `Date_posted` DATETIME NOT NULL DEFAULT current_timestamp(),
     `UsersId` INT NOT NULL,
+    `IsPublished` INT NOT NULL DEFAULT "0",
     PRIMARY KEY(Id),
     FOREIGN KEY(CategoriesId) REFERENCES Categories(Id),
     FOREIGN KEY(UsersId) REFERENCES Users(Id)
@@ -50,4 +51,6 @@ CREATE Table Comments(
   INSERT INTO Categories(Name) VALUES ("Interior");
 
 INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ("admin", "5f4dcc3b5aa765d61d8327deb882cf99", "admin@millhouse.com", 1);
+
+INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ("user", "5f4dcc3b5aa765d61d8327deb882cf99", "user@millhouse.com", 0);
 
