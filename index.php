@@ -15,6 +15,9 @@ if($page == "signup") {
 
     include("views/create-blogpost.php");
 
+} else if($page == "view") {
+
+    include("views/view-blogpost.php");
 } else {
 
     include("views/home.php");

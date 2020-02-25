@@ -17,7 +17,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     header("location:../index.php");
 } else {
 
-    //--- Hämtar innehåll till DB ---//
+    //--- Hämtar input innehåll som ska till DB ---//
     $title = (!empty($_POST['blogpost_title']) ? $_POST['blogpost_title'] : "");
     $blogpost = (!empty($_POST['blogpost']) ? $_POST['blogpost'] : "");
     $CatID = (!empty($_POST['category']) ? $_POST['category'] : "");
