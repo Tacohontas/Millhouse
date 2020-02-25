@@ -5,6 +5,20 @@
     print_r($_POST);
     echo "</pre>";
 
+// --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
+if (isset($_GET['action']) && $_GET['action'] == "delete") {
+    // Här hämtar vi vår hårdkodade _GET-variabel
+    $query = "DELETE FROM PostsWHERE Id = :postsId;";
+    $sth = $dbh->prepare($query);
+    $postsId = $_GET['id'];
+    $sth->bindParam(':postsId', $postsId);
+    $return = $sth->execute();
+
+    header("location:../index.php");
+} else {
+
+
+
     //--- Hämtar innehåll till DB ---//
     $title = (!empty($_POST['blogpost_title']) ? $_POST['blogpost_title'] : "");
     $blogpost = (!empty($_POST['blogpost']) ? $_POST['blogpost'] : "");
@@ -51,39 +65,47 @@
     $errors = false;
     $errorMessages = "";
 
-    if (empty($title) && $_GET['updatePost'] == false) {
+    if (empty($title)) {
         $errorMessages .= "Skriv en rubrik <br />";
         $errors = true;
     }
 
-    if (empty($blogpost) && $_GET['updatePost'] == false) {
+    if (empty($blogpost)) {
         $errorMessages .= "Skriv ditt blogginlägg <br />";
         $errors = true;
     }
 
-    if (empty($CatID) && $_GET['updatePost'] == false) {
+    if (empty($CatID)) {
         $errorMessages .= "Välj kategori <br />";
         $errors = true;
     }
 
     if ($errors == true) {
         echo $errorMessages;
-        echo "<a href='../create-blogpost.php'> Prova igen! </a>";
+        
+        // Ifall man lämnat fält tomma i redigerings-miljön:
+        if(isset($_GET['updatePost']) && $_GET['updatePost'] == true){
+            echo "<a href='../views/edit-blogpost.php?postId=".$_POST['postId']."'> Prova att redigera igen! </a>";
+        } else {
+            echo "<a href='../views/create-blogpost.php'> Prova att skriva inlägg igen! </a>";
+        }
         die;
     }
 
 
     //--- QUERIES till DB ---//
     if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
+
         $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId;";
         $sth = $dbh->prepare($query);
-        $sth->bindParam(':postId', $_POST['postId']); // Hacker attack-prevent
+        $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
+        
     } else {
         $query = "INSERT INTO Posts ( Title, Content, IMG, CategoriesId, Usersid) VALUES (:title, :blogpost, :blogpostImg, :catid, 1);";
+            //--- Endast admin kan skapa blogginlägg, därav alltid 1 ---//  
         $sth = $dbh->prepare($query);
-        $sth->bindParam(':blogpostImg', $fileDestination); // Hacker attack-prevent
+        $sth->bindParam(':blogpostImg', $fileDestination); // Påbörjad Hacker attack-prevent
     }
-    //--- Endast admin kan skapa blogginlägg, därav alltid 1 ---//
 
     //--- Hacker attack prevent - Bind variablerna ---//
     $sth->bindParam(':title', $title);
@@ -100,5 +122,5 @@
     };
 
 
-
+}
     ?>
