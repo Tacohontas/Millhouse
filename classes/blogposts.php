@@ -21,8 +21,6 @@ class BLOGPOST {
     public function getBlogPosts() {
         return $this->blogposts;
     }
-
-
 }
 
 

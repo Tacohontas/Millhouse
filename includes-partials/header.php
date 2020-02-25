@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,5 +19,17 @@
 
 <body>
     <h1>Startsida</h1>
-    <a href="index.php?page=home">Start</a> | <a href="index.php?page=signup">Registrera</a> | <a href="index.php?page=login">Logga in</a> | <a href="index.php?page=create">Skapa inlägg</a> 
-<hr>
+    <a href="index.php?page=home">Start</a> | 
+    <a href="index.php?page=signup">Registrera</a> | 
+    <a href="index.php?page=login">Logga in</a>
+
+    <?php 
+    // -- ADMIN MENY -- // 
+
+    if(@$_SESSION['IsAdmin'] == true){
+        echo ' | <a href="index.php?page=create">Skapa inlägg</a>';
+
+    }
+    
+    ?>
+    <hr>

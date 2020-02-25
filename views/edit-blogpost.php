@@ -1,6 +1,6 @@
 <?php
-include("../includes-partials/header.php");
-include("../includes-partials/database_connection.php");
+include("./includes-partials/header.php");
+include("./includes-partials/database_connection.php");
 ?>
 
 <h1>Redigera inlägg</h1>
@@ -8,7 +8,7 @@ include("../includes-partials/database_connection.php");
 <?php
 
 
-session_start();
+@session_start();
 
 
 // ERROR - Ifall du lämnat tomma fält (redirectat från handle_blogposts)
@@ -27,7 +27,6 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     $dataFromDB = $dbh->query($getquery);
 
     echo "<pre>";
-    print_r($_GET);
 
 
     // -- Hämtar inlägg som skall redigeras
@@ -65,5 +64,5 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
 
 
 <?php
-include("../includes-partials/footer.php");
+include("./includes-partials/footer.php");
 ?>
