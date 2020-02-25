@@ -94,7 +94,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     //--- QUERIES till DB ---//
     if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
 
-        $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId;";
+        $query = "UPDATE Posts SET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId;";
         $sth = $dbh->prepare($query);
         $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
         

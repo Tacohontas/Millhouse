@@ -38,6 +38,7 @@ if (empty($row)) {
     $_SESSION['Username'] = $row['Username'];
     $_SESSION['Password'] = $row['Password'];
     $_SESSION['IsAdmin'] = $row['IsAdmin'];
+    $_SESSION['UsersId'] = $row['Id'];
 
 
     // if ($_SESSION['IsAdmin'] == 1) {
