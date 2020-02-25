@@ -28,7 +28,7 @@
 
     if(@$_SESSION['IsAdmin'] == true){
         echo ' | <a href="index.php?page=create">Skapa inlägg</a>';
-
+        echo ' | <a href="index.php?page=admin">Admin-sida</a>';
     }
     
     ?>

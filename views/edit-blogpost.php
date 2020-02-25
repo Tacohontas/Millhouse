@@ -18,8 +18,6 @@ if(@$_GET['error'] == true){
 
 
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
-    echo $_SESSION['Username'] . " är inloggad!";
-
 
     // Skapa query för att redigera inlägg
 

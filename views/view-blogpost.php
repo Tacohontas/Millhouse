@@ -18,7 +18,7 @@ include("./includes-partials/database_connection.php");
       echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
       echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
         if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-        echo "<a href='index.php?page=edit?postId=".$BlogPost['id']."'>Redigera </a>";
+        echo "<a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera </a>";
         };
   }
 
