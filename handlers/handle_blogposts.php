@@ -100,13 +100,13 @@
         }
 
         if ($errors == true) {
-            echo $errorMessages;
 
             // ADMIN ERROR - Om fält lämnats tomma i redigerings-miljön:
             if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
-                header("location:../index.php?page=edit&postId=" . $_POST['postId'] . "&error=true");
+                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}");
             } else {
-                header("location:../index.php?page=create&postId=" . $_POST['postId'] . "&error=true");
+                // ERROR - Om fält lämnats tomma i create post-miljön:
+                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}");
             }
             die;
         }
@@ -140,4 +140,4 @@
             echo "det funka";
         };
     }
-    ?>
+?>

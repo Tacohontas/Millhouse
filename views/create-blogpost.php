@@ -8,7 +8,7 @@ include("./includes-partials/header.php");
 @session_start();
 
 if(@$_GET['error'] == true){
-    echo "<h3>Du får ej lämna tomma fält!</h3> <br>";
+    echo $_GET['errormessage'];
 }
 
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {

@@ -13,7 +13,8 @@ include("./includes-partials/database_connection.php");
 
 // ERROR - Ifall du lämnat tomma fält (redirectat från handle_blogposts)
 if(@$_GET['error'] == true){
-    echo "<h3>Du får ej lämna tomma fält!</h3> <br>";
+   echo $_GET['errormessage'];
+
 }
 
 
