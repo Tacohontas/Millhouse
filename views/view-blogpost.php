@@ -27,7 +27,7 @@ include("./includes-partials/database_connection.php");
   };
 
 
-  //--- Hämtar ALLA kommentarer ---// 
+  //--- Hämtar kommentarer på det klickade inlägget ---// 
   $Comments = new COMMENT($dbh);
   $Comments->fetchCommentByPostID($_GET['postId']);
 
@@ -35,14 +35,18 @@ include("./includes-partials/database_connection.php");
     echo "<hr />";
     echo $Comment['Content']."<br />";
     echo $Comment['Date_posted']."<br />";
-    echo $Comment['Username'];
-   
+    echo $Comment['Username']." |";
+    
+    //--- Admin kan radera alla kommentarer + Inloggad använadre kan ta bort sina egna kommentarer---//
      if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '">Delete!</a><br>';
+    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+    } elseif (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
+        echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+    } else {
+        echo " <a href='index.php?page=login'>Logga in</a> för att ta bort kommentar <br>";
     }
     
   };
-
 
 
 //--- Lämna en kommentar som inloggad användare ---//
