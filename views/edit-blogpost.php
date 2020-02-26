@@ -22,7 +22,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
 
     // Skapa query för att redigera inlägg
 
-    $getquery = "SELECT id, title, content FROM Posts WHERE Id = " . $_GET['postId'] . ";";
+    $getquery = "SELECT id, title, content, img FROM Posts WHERE Id = " . $_GET['postId'] . ";";
     $dataFromDB = $dbh->query($getquery);
 
     echo "<pre>";
@@ -31,9 +31,10 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     // -- Hämtar inlägg som skall redigeras
 
     while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {
+        print_r($row);
 
         echo '<center>
-    <form action="./handlers/handle_blogposts.php?updatePost=true" method="POST" enctype="multipart/form-data">
+    <form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img='.$row['img'].'" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
 
@@ -48,10 +49,11 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     <option value="3">Inreding</option>
     </select><br>
         
-    <input type="submit" value="Redigera inlägg">
+    <input type="file" name="fileToUpload"> <br>
+    <input type="submit" name="submit" value="Redigera inlägg">
     </form>
 
-    <a href="./handlers/handle_blogposts.php?action=delete&id=' . $_GET['postId'] . '">Delete!</a>
+    <a href="./handlers/handle_blogposts.php?action=delete&id=' . $_GET['postId'] . '&img='.$row['img'].'">Delete!</a>
 
 
     </center>';

@@ -1,6 +1,8 @@
 <?php
 include("./includes-partials/header.php");
-
+echo "<pre>";
+print_r($_FILES);
+echo "</pre>";
 ?>
 
 <?php
@@ -15,8 +17,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     echo $_SESSION['Username'] . " är inloggad!";
 
     echo '<center>
-        <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data">
-        
+    <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="blogpost_title" placeholder="Rubrik..." required> <br> <br>
         
         <textarea name="blogpost" cols="30" rows="20" required>Skapa ditt blogginlägg här...</textarea> <br>
