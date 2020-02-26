@@ -2,6 +2,21 @@
 include("../includes-partials/database_connection.php");
 
 
+// --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
+if (isset($_GET['action']) && $_GET['action'] == "delete") {
+    // Här hämtar vi vår hårdkodade _GET-variabel
+    $query = "DELETE FROM Comments WHERE Id = :commentsId;";
+    $sth = $dbh->prepare($query);
+    $commentsId= $_GET['id'];
+    $sth->bindParam(':commentsId', $commentsId);
+    $return = $sth->execute();
+
+   header("location:../index.php");
+
+    
+
+    //index.php?page=view&postId=7
+} else {
 
 //--- Hämtar input innehåll som ska till DB ---//
     $comment = (!empty($_POST['comment']) ? $_POST['comment'] : "");
@@ -25,15 +40,12 @@ include("../includes-partials/database_connection.php");
         $sth->bindParam(':postId', $postId);
         $sth->bindParam(':userid', $userid);
       
-        
-
         $return = $sth->execute();
 
 if (!$return) {
     print_r($dbh->errorInfo());
 } else {
-    
-    echo "det funka";
+    header("location:../index.php");
 };
-
+}
     ?>
