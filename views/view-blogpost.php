@@ -26,21 +26,19 @@ include("./includes-partials/database_connection.php");
   };
 
 
-
+//--- Lämna en kommentar som inloggad användare ---//
     echo '<form method="POST" action="./handlers/handle_comments.php">
     <hr />
     <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
     <textarea name="comment" id="" cols="30" rows="5" placeholder="Skriv din kommentar"></textarea><br />
-    <input type="text" name="username" value="' . $_SESSION['UsersId'] . '" readonly><br />
+    <input type="hidden" name="userid" value="' . $_SESSION['UsersId'] . '"><br />
+    <input type="text" name="username" value="' . $_SESSION['Username'] . '" readonly><br />
     <input type="submit" value="Kommentera">
-    
-    
     </form>';
 
 
 
 ?>
-<hr />
 
 <?php
 include("./includes-partials/footer.php");
