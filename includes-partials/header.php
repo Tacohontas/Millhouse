@@ -13,12 +13,13 @@
         }
         ?>
     </title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet"> 
     <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <h1>Startsida</h1>
+    <h1 class="header">MILLHOUSE</h1>
     <a href="index.php?page=home">Start</a> | 
     <a href="index.php?page=signup">Registrera</a> | 
     <a href="index.php?page=login">Logga in</a>

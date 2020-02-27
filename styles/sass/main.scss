@@ -1,6 +1,14 @@
-@import 'buttons'; 
 
+//--- COLORS ---//
 
-body{
-    color: red;
-}
+$background-color: #c2cbc9;
+$box-col: #8b908a;
+$hard-shadow: #5e615d;
+
+//--- FONTS ---//
+
+$header-font: 'Josefin Sans', ;
+$font: 'EB Garamond', ;
+
+@import 'home';
+@import 'header';
