@@ -11,7 +11,7 @@ include("./includes-partials/database_connection.php");
 <?php
 
   //--- HÄMTAR VALT BLOGGINLÄGG ---//
-  $BlogPosts = new BLOGPOST_TEST($dbh);
+  $BlogPosts = new BLOGPOST($dbh);
   $BlogPosts->fetchByPostId($_GET['postId']);
 
   foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
@@ -39,9 +39,9 @@ include("./includes-partials/database_connection.php");
     
     //--- Admin kan radera alla kommentarer + Inloggad använadre kan ta bort sina egna kommentarer---//
      if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
     } elseif (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
-        echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+        echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
     } else {
         echo " <a href='index.php?page=login'>Logga in</a> för att ta bort kommentar <br>";
     }
