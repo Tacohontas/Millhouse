@@ -6,7 +6,12 @@ POST/GET/SESSION: Här använder vi snakecase.
 HTML-classes: Här använder vi oss av BEM naming scheme.
 
 ## Dev dependencies
-Vi använder oss av SCSS-extension i vår styling.
+Vi använder oss av gulp taskrunner med en sass compiler
+
+### GULP
+I terminalen:
+För att compila sass skriv in: gulp styles
+För att hålla kolla och uppdatera vid ändring i sassfiler: gulp watch
 
 ## Mappstruktur
 Images: Bilder skall vara i en rimlig storlek.
