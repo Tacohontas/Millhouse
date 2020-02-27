@@ -22,10 +22,12 @@
     if ($action == "hide" || $action == "publish") {
         $isPublished = ($action == 'hide') ? $isPublished = 0 : $isPublished = 1;
         // Här hämtar vi vår hårdkodade _GET-variabel
-        $query = "UPDATE Posts SET IsPublished = " . $isPublished . " WHERE Id = :postsId ;";
+        $query = "UPDATE Posts SET IsPublished = :isPublished WHERE Id = :postsId ;";
         $sth = $dbh->prepare($query);
         $postsId = $_GET['id'];
+        $sth->bindParam(':isPublished', $isPublished);
         $sth->bindParam(':postsId', $postsId);
+
         $return = $sth->execute();
 
         header("location:../index.php?page=admin");
@@ -148,9 +150,6 @@
         // Ifall inlägget kommer från edit-blogpost:
         if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
 
-
-
-
             $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId; ";
             $sth = $dbh->prepare($query);
 
@@ -178,8 +177,7 @@
         $sth->bindParam(':title', $title);
         $sth->bindParam(':blogpost', $blogpost);
         $sth->bindParam(':catid', $CatID);
-        echo "<pre>";
-        echo $query;
+
         $return = $sth->execute();
 
         if (!$return) {
