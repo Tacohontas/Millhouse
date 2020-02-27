@@ -5,7 +5,6 @@ include("./includes-partials/database_connection.php");
 ?>
 <?php
 //--- Visar ett meddelande med den inloggades username från DB + Utloggning---//
-
 @session_start();
 
 if(isset($_SESSION['Username'])){

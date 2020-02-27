@@ -1,14 +1,12 @@
 <?php
 include("../includes-partials/database_connection.php");
 
-print_r($_POST);
 
 //--- Hämtar input innehåll som ska till DB ---//
 $comment = (!empty($_POST['comment']) ? $_POST['comment'] : "");
 $userId = (!empty($_POST['userid']) ? $_POST['userid'] : "");
 $postId = (!empty($_POST['postId']) ? $_POST['postId'] : "");
 
-print_r($_POST);
 
 // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
@@ -20,20 +18,28 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
    header("location:../index.php?page=view&postId={$_GET['postId']}");
 
-
-    
 } else {
     
     //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
     $comment = htmlspecialchars($comment);
+    $errorMessages = htmlspecialchars($errorMessages);
 
     //--- ERROR meddelanden för kommentarer ---//
+    if (empty($comment)) {
+        $errorMessages .= "Skriv din kommentar <br />";
+        $errors = true;
+    }
+
+    if ($errors == true) {
+
+            header("location:../index.php?page=view&postId={$postId}&error=true&errormessage={$errorMessages}");
+            die;
+    }
     
    //--- QUERIES till DB ---//
 
     $query = "INSERT INTO Comments ( Content, PostsId, UsersId ) VALUES ( :comment, :postId, :userid );";
  
-    
         $sth = $dbh->prepare($query);
         $sth->bindParam(':comment', $comment);
         $sth->bindParam(':postId', $postId);

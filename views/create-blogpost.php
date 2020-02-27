@@ -1,8 +1,5 @@
 <?php
 include("./includes-partials/header.php");
-echo "<pre>";
-print_r($_FILES);
-echo "</pre>";
 ?>
 
 <?php
