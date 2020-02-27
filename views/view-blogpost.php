@@ -11,7 +11,7 @@ include("./includes-partials/database_connection.php");
 <?php
 
   //--- HÄMTAR VALT BLOGGINLÄGG ---//
-  $BlogPosts = new BLOGPOST_TEST($dbh);
+  $BlogPosts = new BLOGPOST($dbh);
   $BlogPosts->fetchByPostId($_GET['postId']);
 
   foreach( $BlogPosts->getBlogPosts() as $BlogPost) {

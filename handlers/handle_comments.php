@@ -4,14 +4,13 @@ include("../includes-partials/database_connection.php");
 
 // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
-    // Här hämtar vi vår hårdkodade _GET-variabel
     $query = "DELETE FROM Comments WHERE Id = :commentsId;";
     $sth = $dbh->prepare($query);
     $commentsId= $_GET['id'];
     $sth->bindParam(':commentsId', $commentsId);
     $return = $sth->execute();
 
-   header("location:../index.php");
+   header("location:../index.php?page=view&postId={$_GET['postId']}");
 
     
 
