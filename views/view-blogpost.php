@@ -1,33 +1,64 @@
 <?php
 include("./includes-partials/header.php");
 include("./classes/blogposts.php");
+include("./classes/comments.php");
 include("./includes-partials/database_connection.php");
+
+@session_start();
+
 ?>
 
 <?php
 
-//--- HÄMTAR ALLA BLOGGINLÄGG ---//
-$BlogPosts = new BLOGPOST($dbh);
-$BlogPosts->fetchByPostId($_GET['postId']);
+  //--- HÄMTAR VALT BLOGGINLÄGG ---//
+  $BlogPosts = new BLOGPOST_TEST($dbh);
+  $BlogPosts->fetchByPostId($_GET['postId']);
 
-foreach ($BlogPosts->getBlogPosts() as $BlogPost) {
-
-  echo "<b> Rubrik: </b>" . $BlogPost['title'] . "<br />";
-  echo "<b> Inlägg: </b>" . $BlogPost['content'] . "<br />";
-  echo "<img src='images/" . $BlogPost['img'] . "' alt='Här ska det va en bild' maxheight=300 width=200>" . "<br />";
-  echo "<b> Kategori: </b>" . $BlogPost['name'] . "<br />";
-  echo "<b> Datum: </b>" . $BlogPost['date_posted'] . "<br />";
-  if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1) {
-    echo "<a href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera </a><br>";
-
-    // Ifall inlägget ej är publicerat så visas "Publicera"-länken. Annars en "Dölj"-länk.
-    if ($BlogPost['isPublished'] == 0) {
-      echo '<a href="./handlers/handle_blogposts.php?action=publish&id=' . $BlogPost['id'] . '">Publicera!</a>';
-    } else {
-      echo '<a href="./handlers/handle_blogposts.php?action=hide&id=' . $BlogPost['id'] . '">Dölj inlägg</a>';
-    }
+  foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
+      
+      echo"<b> Rubrik: </b>" . $BlogPost['title']."<br />";
+      echo"<b> Inlägg: </b>" . $BlogPost['content'] ."<br />";
+      echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";
+      echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
+      echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
+        if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
+        echo "<a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera </a>";
+        }
   };
-}
+
+
+  //--- Hämtar kommentarer på det klickade inlägget ---// 
+  $Comments = new COMMENT($dbh);
+  $Comments->fetchCommentByPostID($_GET['postId']);
+
+  foreach( $Comments->getComments() as $Comment) {
+    echo "<hr />";
+    echo $Comment['Content']."<br />";
+    echo $Comment['Date_posted']."<br />";
+    echo $Comment['Username']." |";
+    
+    //--- Admin kan radera alla kommentarer + Inloggad använadre kan ta bort sina egna kommentarer---//
+     if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
+    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+    } elseif (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
+        echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] . '"> Ta bort</a><br>';
+    } else {
+        echo " <a href='index.php?page=login'>Logga in</a> för att ta bort kommentar <br>";
+    }
+    
+  };
+
+
+//--- Lämna en kommentar som inloggad användare ---//
+    echo '<form method="POST" action="./handlers/handle_comments.php">
+    <hr />
+    <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
+    <textarea name="comment" id="" cols="30" rows="5" placeholder="Skriv din kommentar"></textarea><br />
+    <input type="hidden" name="userid" value="' . $_SESSION['UsersId'] . '"><br />
+    <input type="text" name="username" value="' . $_SESSION['Username'] . '" readonly><br />
+    <input type="submit" value="Kommentera">
+    </form>';
+
 
 
 ?>
