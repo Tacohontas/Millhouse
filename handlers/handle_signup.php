@@ -14,10 +14,9 @@ if (empty($username) || empty($password) || empty($email)) {
 }
 
 // SQL-Queries
-$query = "INSERT INTO Users(Username, Password, Email) VALUES ('$username', '$password', '$email');";
+$query = "INSERT INTO Users(Username, Password, Email) VALUES (:username, :password, :email);";
 // "isAdmin = 0" betyder att användare ej har admin-rättigheter.
 $getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password' OR Username='$username';";
-
 
 
 
@@ -34,14 +33,20 @@ echo "</pre>";
 //Kolla ifall användaren redan finns i databasen:
 
 // Får vi 0 rader tillbaka från vår DB så betyder det att användaren ej finns.
-
 if (!count($result) == 0) {
     // Skicka tillbaka till signup med en hårdkodad GET-variabel som resulterar i felmeddelande.
-    header("location:../signup.php?error=true");
+    header("location:../index.php?page=signup&error=true");
     echo "användare finns redan";
 } else {
+    $sth = $dbh->prepare($query);
+
+    $sth->bindParam(':username', $username);
+    $sth->bindParam(':password', $password);
+    $sth->bindParam(':email', $email);
+
     // Matar in i DB om användaren ej finns registrerad.
-    $insertToDB = $dbh->query($query);
+    $insertToDB = $sth->execute();
+
 
     if (!$insertToDB) {
         // Ifall det av någon anledning inte går att lägga till i DB:
