@@ -21,15 +21,14 @@
 <body>
 
     <header class="header">
-
+    <h1 class="logo-text">MILLHOUSE</h1>
         <nav class="header-nav">
-            <h1 class="logo-text">MILLHOUSE</h1>
             <ul class="header-nav_links">
                 <li>
-                    <a href="index.php?page=home">Start </a>
+                    <a href="index.php?page=home">Hem </a>|
                 </li>
                 <li>
-                    <a href="index.php?page=signup">Registrera </a>
+                    <a href="index.php?page=signup">Registrera </a>|
                 </li>
                 <li>
                     <a href="index.php?page=login">Logga in </a>
@@ -38,8 +37,8 @@
                 // -- ADMIN MENY -- // 
 
                 if (@$_SESSION['IsAdmin'] == true) {
-                    echo ' <li><a href="index.php?page=create">Skapa inlägg </a></li>';
-                    echo ' <li><a href="index.php?page=admin">Admin-sida</a></li>';
+                    echo '  <li>|<a href="index.php?page=create"> Skapa inlägg </a></li>';
+                    echo '  <li>|<a href="index.php?page=admin">  Admin-sida</a></li>';
                 }
 
                 ?>
