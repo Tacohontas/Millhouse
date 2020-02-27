@@ -23,12 +23,10 @@ $dataFromDB = $dbh->query($getquery);
 $row = $dataFromDB->fetch(PDO::FETCH_ASSOC);
 
 
-
-
 // Ifall vårt svar från DB är tomt = finns ingen användare med den infon
 if (empty($row)) {
-    //Skickar tillbaka till signupForm.php med en hårdkodad GET-variabel
-    header("location:../login.php?error=true");
+    //Skickar tillbaka till login med en hårdkodad GET-variabel
+    header("location:../index.php?page=login&error=true");
 } else {
     // Skicka vidare till inloggningslanding
     echo "Du kan logga in";
@@ -40,9 +38,9 @@ if (empty($row)) {
     $_SESSION['IsAdmin'] = $row['IsAdmin'];
 
 
-    // if ($_SESSION['IsAdmin'] == 1) {
-    //     header("location:../views/admin.php");
-    // } else {
+    if ($_SESSION['IsAdmin'] == 1) {
+        header("location:../index.php?page=admin");
+    } else {
         header("location:../index.php");
-    // };
+    };
 }
