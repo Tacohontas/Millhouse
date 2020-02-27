@@ -14,23 +14,40 @@
         ?>
     </title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet">
     <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <h1 class="header">MILLHOUSE</h1>
-    <a href="index.php?page=home">Start</a> | 
-    <a href="index.php?page=signup">Registrera</a> | 
-    <a href="index.php?page=login">Logga in</a>
 
-    <?php 
-    // -- ADMIN MENY -- // 
+    <header class="header">
 
-    if(@$_SESSION['IsAdmin'] == true){
-        echo ' | <a href="index.php?page=create">Skapa inlägg</a>';
-        echo ' | <a href="index.php?page=admin">Admin-sida</a>';
-    }
-    
-    ?>
+        <nav class="header-nav">
+            <h1 class="logo-text">MILLHOUSE</h1>
+            <ul class="header-nav_links">
+                <li>
+                    <a href="index.php?page=home">Start </a>
+                </li>
+                <li>
+                    <a href="index.php?page=signup">Registrera </a>
+                </li>
+                <li>
+                    <a href="index.php?page=login">Logga in </a>
+                </li>
+                <?php
+                // -- ADMIN MENY -- // 
+
+                if (@$_SESSION['IsAdmin'] == true) {
+                    echo ' <li><a href="index.php?page=create">Skapa inlägg </a></li>';
+                    echo ' <li><a href="index.php?page=admin">Admin-sida</a></li>';
+                }
+
+                ?>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
     <hr>
