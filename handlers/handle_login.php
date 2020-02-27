@@ -3,10 +3,18 @@ include("../includes-partials/database_connection.php");
 
 
 
+
 $username = (!empty($_POST["username"])) ? $_POST["username"] : "";
 $password = (!empty($_POST["password"])) ? md5($_POST['password']) : "";
 $username = htmlspecialchars($username);
 
+
+// -- När användare kommer från handle_signup -- // 
+session_start();
+if (isset($_SESSION['Username'])) {
+    $username = (isset($_SESSION["Username"])) ? $_SESSION["Username"] : "";
+    $password = (isset($_SESSION["Password"])) ? $_SESSION["Password"] : "";
+}
 
 // Ifall alla fält ej är ifyllda
 if (empty($username) || empty($password)) {

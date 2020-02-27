@@ -55,11 +55,15 @@ if (!count($result) == 0) {
         // Användare skapas! 
         session_start();
 
+
+        // --- LOGGA IN --- // 
+
+
         // Sparar användarnamn och lösen i SESSION-variabeln. 
         $_SESSION['Username'] = $username;
         $_SESSION['Password'] = $password;
 
         // Skicka vidare till login.php.
-        header("location:../index.php");
+        header("location:handle_login.php");
     }
 }
