@@ -15,7 +15,9 @@
     </title>
     <link rel="stylesheet" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet"> 
-    <script src="js/main.js" defer></script>
+    <script src="js/app.js" defer></script>
+	<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
+
 </head>
 
 <body>

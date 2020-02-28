@@ -111,7 +111,9 @@
 
         //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
         $title = htmlspecialchars($title);
-        $blogpost = htmlspecialchars($blogpost);
+
+        // I text-areafältet använder vi oss av CKEDITOR som har inbyggd hackerattack-lösning!
+        // $blogpost = htmlspecialchars($blogpost);
 
         //--- ERROR meddelanden ---//
 
