@@ -35,5 +35,5 @@ gulp.task("styles", async function() {
 //gulp watch
 
 gulp.task("watch", async function() {
-  gulp.watch(CSS_PATH, gulp.series("styles"));
+  gulp.watch(SCSS_PATH, gulp.series("styles"));
 });

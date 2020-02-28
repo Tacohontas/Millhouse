@@ -12,9 +12,8 @@ include("./includes-partials/database_connection.php");
 
 
 // ERROR - Ifall du lämnat tomma fält (redirectat från handle_blogposts)
-if(@$_GET['error'] == true){
-   echo $_GET['errormessage'];
-
+if (@$_GET['error'] == true) {
+    echo $_GET['errormessage'];
 }
 
 
@@ -31,32 +30,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     // -- Hämtar inlägg som skall redigeras
 
     while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {
-        print_r($row);
-
-        echo '<center>
-    <form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img='.$row['img'].'" method="POST" enctype="multipart/form-data">
-
-    <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
-
-    <input type="text" name="blogpost_title" placeholder="Rubrik..." value="' . $row['title'] . '" required> <br> <br>
-
-    <textarea name="blogpost" id="" cols="30" rows="20" required>' . $row['content'] . '</textarea> <br>
-    
-    Välj Kategori:
-    <select name="category">
-    <option value="1">Solglassögon</option>
-    <option value="2">Klockor</option>
-    <option value="3">Inreding</option>
-    </select><br>
-        
-    <input type="file" name="fileToUpload"> <br>
-    <input type="submit" name="submit" value="Redigera inlägg">
-    </form>
-
-    <a href="./handlers/handle_blogposts.php?action=delete&id=' . $_GET['postId'] . '&img='.$row['img'].'">Delete!</a>
-
-
-    </center>';
+        include("./includes-partials/editpost_form.php");
     }
 } else {
     echo "bara admin får blogga :(";
