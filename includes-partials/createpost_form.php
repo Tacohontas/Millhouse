@@ -1,4 +1,3 @@
-<center>
 <div class="createform">
 
     <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data">
@@ -20,7 +19,6 @@
 
     </form>
     </div>
-</center>
 
 
 

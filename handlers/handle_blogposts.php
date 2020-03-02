@@ -185,7 +185,7 @@
         if (!$return) {
             print_r($dbh->errorInfo());
         } else {
-            header("location:../index.php?page=home");
+            header("location:../index.php?page=admin");
             echo "det funka";
             die;
         };
