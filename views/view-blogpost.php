@@ -28,35 +28,18 @@ echo "<div class='view-container'>";
   echo "</div>";
 
 
-  //--- Hämtar kommentarer på valda blogginlägget ---// 
+  //--- Hämtar kommentarer på valt blogginlägget ---// 
   $Comments = new COMMENT($dbh);
   $Comments->fetchCommentByPostID($_GET['postId']);
 
   foreach( $Comments->getComments() as $Comment) {
-    echo "<hr />";
-    echo $Comment['Content']."<br />";
-    echo $Comment['Date_posted']."<br />";
-    echo $Comment['Username']." |";
-    
-    //--- Admin kan radera alla kommentarer + Inloggad använadre kan ta bort sina egna kommentarer---//
-     if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-    echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
-    } elseif (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
-        echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
-    }
+    include("./includes-partials/display_comment.php");
     
   };
 
 
 //--- Lämna en kommentar som inloggad användare ---//
-    echo '<form method="POST" action="./handlers/handle_comments.php">
-    <hr />
-    <input type="hidden" name="postId" value="' . $_GET['postId'] . '"><br>
-    <textarea name="comment" id="" cols="30" rows="5" placeholder="Skriv din kommentar"></textarea><br />
-    <input type="hidden" name="userid" value="' . $_SESSION['UsersId'] . '"><br />
-    <input type="text" name="username" value="' . $_SESSION['Username'] . '" readonly><br />
-    <input type="submit" value="Kommentera">
-    </form>';
+    include("./includes-partials/leave_comment.php");
 ?>
 
 <?php

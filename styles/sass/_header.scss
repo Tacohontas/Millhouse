@@ -1,42 +1,53 @@
 .header{
     width: 100%;
-    height: 10vh;
-    color: white;
+    color: $font-col;
+    background-color: $box-col;
+    border-bottom: 20px solid $shadow;
+    //border: 20px solid $shadow;
+    padding: 1rem;
+    margin: 0 auto;
+    
+    //box-shadow: 20px 20px 0 $shadow;
 }
 .header-nav_links {
     display: flex;
     font-family: $header-font;
     text-transform: uppercase;
-    margin: 0 0 0 1rem;
+    justify-content: center;
+    font-size: 1.5rem;
 
     a:link, a:visited {
-        color: white;
+        color: $font-col;
     }
     a:hover {
-        color: $link-col;
+        color: $shadow;
     }
 }
 li {
-    margin: 4px 4px 4px 4px;
+    margin: 4px;
 }
 
 .logo-text {
-    font-size: 3rem;
+    font-size: 5rem;
     font-family: $header-font;
     position: relative;
-    margin: 2rem 1rem 0 1rem;
+    margin: 1rem 0 0rem 0;
     width: 100%;
-    text-shadow: 5px 5px $accent-col;
+    text-shadow: 5px 5px $shadow;
+    text-align: center;
+    
 }
 @media screen and (max-width: 800px) {
     
     .logo-text {
-        text-align: center;
-        float: none;
+        font-size: 3.5rem;
         margin: 2rem 0 0 0;
     }
     .header-nav_links {
-        justify-content: center;
         font-size: 0.6rem;
+    }
+    .header {
+        
+        height: 6rem;
     }
 }
