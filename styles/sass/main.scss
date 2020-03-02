@@ -22,6 +22,17 @@ $font: 'EB Garamond', ;
     list-style: none;
   }
 
+input[type=submit]{
+  background-color: $box-col;
+  color: white;
+  height: 2rem;
+  width: 10rem;
+  font-family: $header-font;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
 @import 'home';
 @import 'header';
 @import 'view-blogpost';
+@import 'create-blogpost';
