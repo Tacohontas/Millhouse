@@ -20,13 +20,7 @@ if(isset($_SESSION['Username'])){
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
         
-        echo "<div class='blogpost_section'>";
-        echo "<h2><a href='index.php?page=view&postId=" . $BlogPost['id'] . "'> ".$BlogPost['title']. "</a> </h2>";
-        echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=600 width=300>";
-       // echo $BlogPost['content'] . "<br>";
-       echo $BlogPost['name'] . " | ";
-        echo $BlogPost['date_posted'];
-        echo "</div>";
+        include("./includes-partials/thumbnail_blogpost.php");
         
     }
 

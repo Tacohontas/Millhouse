@@ -22,18 +22,7 @@ echo "<div class='view-container'>";
   $BlogPosts->fetchByPostId($_GET['postId']);
 
   foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
-      echo "<div class='blogpost'>";
-      echo $BlogPost['date_posted'];
-      echo "<h2>" . $BlogPost['title'] ."</h2>";
-      echo $BlogPost['date_posted'] . " | ";
-      echo $BlogPost['name'] ."<br />";
-      echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=800 width=400>";
-      echo $BlogPost['name'] ."<br />";
-      echo "<p>" . $BlogPost['content'] . "</p>";
-        if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-        echo "<h3><a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera </a></h3>";
-        }
-      echo "</div>";
+      include("./includes-partials/full_blogpost.php");
   };
 
   echo "</div>";
