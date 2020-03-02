@@ -1,0 +1,29 @@
+//Visa kommentarer
+.comment_container {
+    
+    border: 2px solid grey;
+}
+.comment {
+    background-color: white;
+    height: 8rem;
+    width: 18rem;
+    border: 2px solid grey;
+    font-family: $font;
+}
+.username {
+    text-transform: capitalize;
+}
+
+
+
+//Lämna kommentar 
+.leave_comment-container {
+    border: 2px solid grey;
+    display: flex;
+    justify-content: center;
+    width: 40rem;
+
+
+}
+
+
