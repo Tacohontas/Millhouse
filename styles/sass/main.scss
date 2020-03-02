@@ -3,7 +3,10 @@
 
 $background-color: #c2cbc9;
 $box-col: #8b908a;
-$hard-shadow: #5e615d;
+$box-col_2: #e2e6d5f8;
+$hard-shadow: #a3aaa0;
+$font-col: #e2e6d5f8;
+$link-col: rgb(51, 50, 50);
 
 //--- FONTS ---//
 
@@ -21,3 +24,4 @@ $font: 'EB Garamond', ;
 
 @import 'home';
 @import 'header';
+@import 'view-blogpost';

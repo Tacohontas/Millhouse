@@ -26,12 +26,10 @@ li {
     position: relative;
     margin: 2rem 1rem 0 1rem;
     width: 100%;
+    text-shadow: 5px 5px grey;
 }
 @media screen and (max-width: 800px) {
-    .header{
-        height: 15vh;
-
-    }
+    
     .logo-text {
         text-align: center;
         float: none;
