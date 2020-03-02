@@ -11,11 +11,7 @@ if(@$_GET['error'] == true){
 }
 
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
-    echo $_SESSION['Username'] . " är inloggad!";
-    
     include("./includes-partials/createpost_form.php");
-
-
 } else {
     echo "bara admin får blogga :(";
 };
