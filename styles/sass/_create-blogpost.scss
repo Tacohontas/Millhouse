@@ -1,19 +1,78 @@
 .create_blogpost {
   display: flex;
   justify-content: center;
+  color: white;
+  background-color: $box-col;
 
   &__form {
+    font-family: $font;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    input[type="text"] {
-      height: 45px;
-      width: 25rem;
+    display: grid;
+    grid-template-areas:
+      "compose toolbox"
+      "compose toolbox";
+
+    .compose {
+      grid-area: compose;
       margin: 1rem;
-      font-family: $header-font;
-      font-size: 1.5rem;
-      text-align: center;
+
+      .title {
+        font-family: $header-font;
+        height: 45px;
+        width: 25rem;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .create_btn {
+      background-color: $accent-col;
+    //   background-color: #EBCFB2
+    }
+
+    .toolbox {
+      grid-area: toolbox;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 1rem;
+
+      .toolbox__upload {
+        // border: 2px solid red;
+      }
+
+      .toolbox__select {
+        // border: 2px solid blue;
+        display: flex;
+        flex-direction: column;
+
+        input {
+          display: none;
+        }
+
+        label {
+          display: inline-block;
+          background-color: $link-col;
+          padding: 4px 11px;
+          font-family: Arial;
+          font-size: 16px;
+          cursor: pointer;
+          margin: 0.5rem;
+        }
+
+        input:hover + label {
+          background-color: gray;
+        }
+
+        input:checked + label {
+          background-color: $background-color;
+        }
+
+        select {
+          background-color: red;
+        }
+      }
     }
   }
 }

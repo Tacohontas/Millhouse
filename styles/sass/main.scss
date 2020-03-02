@@ -9,11 +9,17 @@ $box-col: #97a8a4;
 $font-col: #fbfbfb;
 $link-col: #768783;
 $box-shadow_small: 1px 0px 13px 0px rgba(146,158,155,1);
+$accent-col: #B38D97;
 
 //--- FONTS ---//
 
 $header-font: 'Josefin Sans', ;
 $font: 'EB Garamond', ;
+
+h1, h2, h3, h4, h5, h6{
+  font-family: $header-font;
+  color: $font-col;
+}
 
 * {
     margin: 0;
@@ -24,14 +30,21 @@ $font: 'EB Garamond', ;
     list-style: none;
   }
 
-input[type=submit]{
+input{
+  border: none;
+}
+
+button , input[type=submit]{
+  padding: 1rem 3rem;
   background-color: $box-col;
   color: white;
-  height: 2rem;
-  width: 10rem;
+  text-decoration: none;
+
   font-family: $header-font;
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
 }
 
 @import 'home';
