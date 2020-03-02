@@ -15,22 +15,28 @@ if(@$_GET['error'] == true){
   echo $_GET['errormessage'];
 
 }
+echo "<div class='view-container'>";
 
   //--- HÄMTAR VALT BLOGGINLÄGG ---//
   $BlogPosts = new BLOGPOST($dbh);
   $BlogPosts->fetchByPostId($_GET['postId']);
 
   foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
-      
-      echo"<b> Rubrik: </b>" . $BlogPost['title']."<br />";
-      echo"<b> Inlägg: </b>" . $BlogPost['content'] ."<br />";
-      echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";
-      echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
-      echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
+      echo "<div class='blogpost'>";
+      echo $BlogPost['date_posted'];
+      echo "<h2>" . $BlogPost['title'] ."</h2>";
+      echo $BlogPost['date_posted'] . " | ";
+      echo $BlogPost['name'] ."<br />";
+      echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=800 width=400>";
+      echo $BlogPost['name'] ."<br />";
+      echo "<p>" . $BlogPost['content'] . "</p>";
         if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
-        echo "<a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera </a>";
+        echo "<h3><a href='index.php?page=edit&postId=".$BlogPost['id']."'>Redigera </a></h3>";
         }
+      echo "</div>";
   };
+
+  echo "</div>";
 
 
   //--- Hämtar kommentarer på valda blogginlägget ---// 
@@ -46,7 +52,7 @@ if(@$_GET['error'] == true){
     //--- Admin kan radera alla kommentarer + Inloggad använadre kan ta bort sina egna kommentarer---//
      if(isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1){
     echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
-    } else (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
+    } elseif (isset($_SESSION['Username']) && $_SESSION['Username'] == $Comment['Username']) {
         echo '<a href="./handlers/handle_comments.php?action=delete&id=' . $Comment['Id'] .'&postId='.$_GET['postId'].'"> Ta bort</a><br>';
     }
     
@@ -62,11 +68,9 @@ if(@$_GET['error'] == true){
     <input type="text" name="username" value="' . $_SESSION['Username'] . '" readonly><br />
     <input type="submit" value="Kommentera">
     </form>';
-
-
-
 ?>
 
 <?php
 include("./includes-partials/footer.php");
 ?>
+

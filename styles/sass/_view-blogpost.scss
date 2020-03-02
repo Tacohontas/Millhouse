@@ -1,0 +1,52 @@
+.view-container {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 3rem;
+    margin: 2rem 5rem 2rem 5rem;
+}
+
+.blogpost {
+    display: grid;
+    width: 100%;
+    grid-row-gap: .5rem;
+    background-color: $hard-shadow;
+    text-align: center;
+    justify-items: center;
+    //box-shadow: 20px 20px 0 $hard-shadow;
+    color: $box-col_2;
+    font-family: $font;
+    padding: 2rem;
+    
+    h2 {
+        font-family: $header-font;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: #f0f0f0;
+        font-size: 18px;
+    }
+
+    a:link, a:visited {
+        color: $hard-shadow;
+    }
+    a:hover {
+        color: $link-col;
+    }
+
+    img {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.096);
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    
+    .grid-container {
+        margin: 2rem 0.1rem 2rem 0.1rem;
+    }
+    .blogpost_section {
+        width: 20rem;
+    }
+}

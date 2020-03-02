@@ -12,20 +12,25 @@ if(isset($_SESSION['Username'])){
     echo "<br>";
     echo '<a href="./handlers/logout.php">Logga ut</a><br>'; 
 
+    echo "<div class='grid-container'>";
 
     //--- HÄMTAR ALLA BLOGGINLÄGG ---//
     $BlogPosts = new BLOGPOST($dbh);
     $BlogPosts->fetchAll('published');
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
-        echo "<hr>";
-        echo"<a href='index.php?page=view&postId=" . $BlogPost['id'] . "'> ".$BlogPost['title']. "</a> <br />";
-        echo"<b> Inlägg: </b>" . $BlogPost['content'] ."<br />";
-        echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=300 width=200>" ."<br />";
-        echo"<b> Kategori: </b>" . $BlogPost['name'] ."<br />";
-        echo"<b> Datum: </b>" . $BlogPost['date_posted'] ."<br />";
-       
+        
+        echo "<div class='blogpost_section'>";
+        echo "<h2><a href='index.php?page=view&postId=" . $BlogPost['id'] . "'> ".$BlogPost['title']. "</a> </h2>";
+        echo"<img src='images/".$BlogPost['img']."' alt='Här ska det va en bild' maxheight=600 width=300>";
+       // echo $BlogPost['content'] . "<br>";
+       echo $BlogPost['name'] . " | ";
+        echo $BlogPost['date_posted'];
+        echo "</div>";
+        
     }
+
+    echo "</div>";
 } else {
     echo "<marquee><h1>LOGGA IN TACK!</h1></marquee>";
 }
@@ -36,3 +41,5 @@ if(isset($_SESSION['Username'])){
 <?php
 include("./includes-partials/footer.php");
 ?>
+
+

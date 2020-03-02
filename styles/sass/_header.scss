@@ -1,3 +1,42 @@
-.header {
-    font-family: $header-font ;
+.header{
+    width: 100%;
+    height: 10vh;
+    color: white;
+}
+.header-nav_links {
+    display: flex;
+    font-family: $header-font;
+    text-transform: uppercase;
+    margin: 0 0 0 1rem;
+
+    a:link, a:visited {
+        color: white;
+    }
+    a:hover {
+        color: $hard-shadow;
+    }
+}
+li {
+    margin: 4px 4px 4px 4px;
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-family: $header-font;
+    position: relative;
+    margin: 2rem 1rem 0 1rem;
+    width: 100%;
+    text-shadow: 5px 5px grey;
+}
+@media screen and (max-width: 800px) {
+    
+    .logo-text {
+        text-align: center;
+        float: none;
+        margin: 2rem 0 0 0;
+    }
+    .header-nav_links {
+        justify-content: center;
+        font-size: 0.6rem;
+    }
 }
