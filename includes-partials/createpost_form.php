@@ -3,7 +3,6 @@
     <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
         <div class="compose">
             <input type="text" name="blogpost_title" placeholder="Här skriver du din rubrik..." class="title" required>
-
             <textarea id="content" name="blogpost" cols="30" rows="20" required></textarea>
         </div>
 
@@ -30,10 +29,6 @@
                 </div>
             </div>
 
-
-
-
-
             <div class="toolbox__select">
                 <h3>VÄLJ KATEGORI</h3>
                 <input type="radio" name="category" id="1" value="1">
@@ -42,7 +37,6 @@
                 <label for="2">Klockor</label>
                 <input type="radio" name="category" id="3" value="3">
                 <label for="3">Inredning</label>
-
             </div>
 
             <input type="submit" name="submit" value="Skapa inlägg" class="create_btn">

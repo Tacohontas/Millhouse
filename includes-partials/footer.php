@@ -3,23 +3,45 @@
 </body>
 
 <script>
-    
-    // CKEDITOR config. 
-    // 1. Sätt ett id ett element i din form 
-    // 2. Lägg in den i CKEDITOR.replace(ditt_id) för att använda CKeditors funktioner.
+	// CKEDITOR config. 
+	// 1. Sätt ett id ett element i din form 
+	// 2. Lägg in den i CKEDITOR.replace(ditt_id) för att använda CKeditors funktioner.
 
-CKEDITOR.replace( 'content', {
+	CKEDITOR.replace('content', {
 
 		// Define the toolbar:
-		toolbar: [
-			{ name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-			{ name: 'styles', items: [ 'Styles', 'Format' ] },
-			{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
-			{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-			{ name: 'links', items: [ 'Link', 'Unlink' ] },
-			{ name: 'insert', items: [ 'EmbedSemantic', 'Table' ] },
-			{ name: 'tools', items: [ 'Maximize' ] },
-			{ name: 'editing', items: [ 'Scayt' ] }
+		toolbar: [{
+				name: 'clipboard',
+				items: ['Undo', 'Redo']
+			},
+			{
+				name: 'styles',
+				items: ['Styles', 'Format']
+			},
+			{
+				name: 'basicstyles',
+				items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+			},
+			{
+				name: 'paragraph',
+				items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+			},
+			{
+				name: 'links',
+				items: ['Link', 'Unlink']
+			},
+			{
+				name: 'insert',
+				items: ['EmbedSemantic', 'Table']
+			},
+			{
+				name: 'tools',
+				items: ['Maximize']
+			},
+			{
+				name: 'editing',
+				items: ['Scayt']
+			}
 		],
 
 		// Since we define all configuration options here, let's instruct CKEditor to not load config.js which it does by default.
@@ -30,11 +52,17 @@ CKEDITOR.replace( 'content', {
 		// Enabling extra plugins, available in the standard-all preset: https://ckeditor.com/cke4/presets-all
 		extraPlugins: 'autoembed,embedsemantic,image2,uploadimage,uploadfile',
 
-        // Tar bort image-uploadern.
+		// Tar bort image-uploadern.
 		removePlugins: 'image',
+
 
 		// Make the editing area bigger than default.
 		height: 400,
+		
+		// autoGrow_minHeight = 300,
+		// autoGrow_maxHeight = 600,
+		// autoGrow_bottomSpace = 50,
+
 
 		// An array of stylesheets to style the WYSIWYG area.
 
@@ -55,9 +83,21 @@ CKEDITOR.replace( 'content', {
 		// For more information see https://ckeditor.com/docs/ckeditor4/latest/features/styles.html
 		stylesSet: [
 			/* Inline Styles */
-			{ name: 'Marker',			element: 'span', attributes: { 'class': 'marker' } },
-			{ name: 'Cited Work',		element: 'cite' },
-			{ name: 'Inline Quotation',	element: 'q' },
+			{
+				name: 'Marker',
+				element: 'span',
+				attributes: {
+					'class': 'marker'
+				}
+			},
+			{
+				name: 'Cited Work',
+				element: 'cite'
+			},
+			{
+				name: 'Inline Quotation',
+				element: 'q'
+			},
 
 			/* Object Styles */
 			{
@@ -82,20 +122,75 @@ CKEDITOR.replace( 'content', {
 					'border-collapse': 'collapse'
 				}
 			},
-			{ name: 'Borderless Table',		element: 'table',	styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
-			{ name: 'Square Bulleted List',	element: 'ul',		styles: { 'list-style-type': 'square' } },
+			{
+				name: 'Borderless Table',
+				element: 'table',
+				styles: {
+					'border-style': 'hidden',
+					'background-color': '#E6E6FA'
+				}
+			},
+			{
+				name: 'Square Bulleted List',
+				element: 'ul',
+				styles: {
+					'list-style-type': 'square'
+				}
+			},
 
 			/* Widget Styles */
 			// We use this one to style the brownie picture.
-			{ name: 'Illustration', type: 'widget', widget: 'image', attributes: { 'class': 'image-illustration' } },
+			{
+				name: 'Illustration',
+				type: 'widget',
+				widget: 'image',
+				attributes: {
+					'class': 'image-illustration'
+				}
+			},
 			// Media embed
-			{ name: '240p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-240p' } },
-			{ name: '360p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-360p' } },
-			{ name: '480p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-480p' } },
-			{ name: '720p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-720p' } },
-			{ name: '1080p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-1080p' } }
+			{
+				name: '240p',
+				type: 'widget',
+				widget: 'embedSemantic',
+				attributes: {
+					'class': 'embed-240p'
+				}
+			},
+			{
+				name: '360p',
+				type: 'widget',
+				widget: 'embedSemantic',
+				attributes: {
+					'class': 'embed-360p'
+				}
+			},
+			{
+				name: '480p',
+				type: 'widget',
+				widget: 'embedSemantic',
+				attributes: {
+					'class': 'embed-480p'
+				}
+			},
+			{
+				name: '720p',
+				type: 'widget',
+				widget: 'embedSemantic',
+				attributes: {
+					'class': 'embed-720p'
+				}
+			},
+			{
+				name: '1080p',
+				type: 'widget',
+				widget: 'embedSemantic',
+				attributes: {
+					'class': 'embed-1080p'
+				}
+			}
 		]
-	} );
+	});
 </script>
 
 
