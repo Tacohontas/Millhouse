@@ -1,11 +1,6 @@
 <?php
 include("./includes-partials/header.php");
 include("./includes-partials/database_connection.php");
-?>
-
-<h1>Redigera inlägg</h1>
-
-<?php
 
 
 @session_start();
@@ -24,7 +19,6 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     $getquery = "SELECT id, title, content, img FROM Posts WHERE Id = " . $_GET['postId'] . ";";
     $dataFromDB = $dbh->query($getquery);
 
-    echo "<pre>";
 
 
     // -- Hämtar inlägg som skall redigeras
