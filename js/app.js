@@ -1,16 +1,15 @@
-// function preview_image(event) {
-//   console.log("haj");
-//   let reader = new FileReader();
-//   reader.onload = () => {
-//     let output = document.getElementById("output_image");
-//     output.src = reader.result;
-//   };
-//   reader.readAsDataURL(event.target.files[0]);
-// }
+function preview_image(event) {
+  let reader = new FileReader();
+  reader.onload = () => {
+    let output = document.querySelector(".upload_preview__img");
+    let text = document.querySelector(".upload_preview__text");
+    output.src = reader.result;
 
-function myfunc(){
-    return console.log("js loaded");
+    getFileName = () => {
+      let input = document.querySelector("#file");
+      return input.value.split("\\").pop();
+    };
+    text.innerHTML = getFileName();
+  };
+  reader.readAsDataURL(event.target.files[0]);
 }
-
-myfunc();
-

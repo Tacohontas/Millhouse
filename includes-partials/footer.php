@@ -37,8 +37,6 @@ CKEDITOR.replace( 'content', {
 		height: 400,
 
 		// An array of stylesheets to style the WYSIWYG area.
-		// Note: it is recommended to keep your own styles in a separate file in order to make future updates painless.
-		contentsCss: [ 'https://cdn.ckeditor.com/4.8.0/standard-all/contents.css', 'mystyles.css' ],
 
 		// This is optional, but will let us define multiple different styles for multiple editors using the same CSS file.
 		bodyClass: 'article-editor',
