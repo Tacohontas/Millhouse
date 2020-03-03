@@ -35,9 +35,9 @@
             </div>
 
             <input type="submit" name="submit" value="Skapa inlägg" class="create_btn">
+            <a class="delete" href="./handlers/handle_blogposts.php?action=delete&id=<?= $_GET['postId'] ?>&img=<?= $row['img'] ?>">Ta bort inlägg!</a>
 
         </div>
     </form>
 
-    <!-- <a href="./handlers/handle_blogposts.php?action=delete&id=<?= $_GET['postId'] ?>&img=<?= $row['img'] ?>">Delete!</a> -->
 </div>

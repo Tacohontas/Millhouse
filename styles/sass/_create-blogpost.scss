@@ -118,7 +118,12 @@
     .create_btn {
       @extend button;
       background-color: $accent-col;
-      width: 259px;
+      // width: 259px;
+    }
+
+    .delete{
+      @extend button;
+      background: rgb(194, 43, 43);
     }
   }
 }
