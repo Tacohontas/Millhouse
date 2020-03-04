@@ -1,5 +1,5 @@
 <div class="leave_comment-container">
-    <form method="POST" action="./handlers/handle_comments.php">
+    <form class="comment_form" method="POST" action="./handlers/handle_comments.php">
 
         <input type="hidden" name="postId" value="<?=$_GET['postId'] ?>">
         <input type="hidden" name="userid" value="<?= $_SESSION['UsersId'] ?>">
