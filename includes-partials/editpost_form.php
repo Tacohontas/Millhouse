@@ -1,20 +1,43 @@
-<form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img=<?= $row['img'] ?>" method="POST" enctype="multipart/form-data">
+<div class="create_blogpost">
 
-    <input type="hidden" name="postId" value="<?= $_GET['postId'] ?>"><br>
+    <form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img=<?= $row['img'] ?>" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
+        <div class="compose">
+            <input type="hidden" name="postId" value="<?= $_GET['postId'] ?>">
+            <input type="text" class="title" name="blogpost_title" value="<?= $row['title'] ?>" required>
+            <textarea name="blogpost" id="content" cols="30" rows="20" required><?= $row['content'] ?></textarea>
+        </div>
 
-    <input type="text" name="blogpost_title" placeholder="Rubrik..." value="<?= $row['title'] ?>" required> <br> <br>
+        <div class="toolbox">
+            <div class="toolbox__upload">
 
-    <textarea name="blogpost" id="content" cols="30" rows="20" required><?= $row['content'] ?></textarea> <br>
+                <div class="upload_preview">
+                   <!-- $row['img']'s url börjar med en extra punkt som vill ta bort här -->
+                    <img class="upload_preview__img" src="<?= substr($row['img'],1) ?>">
 
-    Välj Kategori:
-    <select name="category">
-        <option value="1">Solglasögon</option>
-        <option value="2">Klockor</option>
-        <option value="3">Inreding</option>
-    </select><br>
+                </div>
 
-    <input type="file" name="fileToUpload"> <br>
-    <input type="submit" name="submit" value="Uppdatera">
-</form>
+                <div class="upload__input">
 
-<a href="./handlers/handle_blogposts.php?action=delete&id=<?= $_GET['postId'] ?>&img=<?= $row['img'] ?>">Delete!</a>
+                    <label for="file">Ladda upp bild</label>
+                    <input type="file" name="fileToUpload" id="file" onchange="preview_image(event)">
+
+                </div>
+            </div>
+
+            <div class="toolbox__select">
+                <h3>VÄLJ KATEGORI</h3>
+                <input type="radio" name="category" id="1" value="1">
+                <label for="1">Solglasögon</label>
+                <input type="radio" name="category" id="2" value="2">
+                <label for="2">Klockor</label>
+                <input type="radio" name="category" id="3" value="3">
+                <label for="3">Inredning</label>
+            </div>
+
+            <input type="submit" name="submit" value="Skapa inlägg" class="create_btn">
+            <a class="delete" href="./handlers/handle_blogposts.php?action=delete&id=<?= $_GET['postId'] ?>&img=<?= $row['img'] ?>">Ta bort inlägg!</a>
+
+        </div>
+    </form>
+
+</div>
