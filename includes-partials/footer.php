@@ -50,10 +50,7 @@
 		customConfig: '',
 
 		// Enabling extra plugins, available in the standard-all preset: https://ckeditor.com/cke4/presets-all
-		extraPlugins: 'autoembed,embedsemantic,image2,uploadimage,uploadfile',
-
-		// Tar bort image-uploadern.
-		removePlugins: 'image',
+		extraPlugins: 'autoembed,embedsemantic,image2',
 
 
 		// Make the editing area bigger than default.
