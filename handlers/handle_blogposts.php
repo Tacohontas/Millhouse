@@ -39,7 +39,7 @@
     // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
     if (isset($_GET['action']) && $_GET['action'] == "delete") {
         // Här hämtar vi vår hårdkodade _GET-variabel
-        $query = "DELETE FROM Posts WHERE Id = :postsId;";
+        $query = "DELETE FROM Comments WHERE PostsId = :postsId; DELETE FROM Posts WHERE Id = :postsId;";
         $sth = $dbh->prepare($query);
         $postsId = $_GET['id'];
         $sth->bindParam(':postsId', $postsId);
