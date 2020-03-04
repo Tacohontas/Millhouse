@@ -1,5 +1,4 @@
 <div class="create_blogpost">
-
     <form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img=<?= $row['img'] ?>" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
         <div class="compose">
             <input type="hidden" name="postId" value="<?= $_GET['postId'] ?>">
@@ -26,15 +25,15 @@
 
             <div class="toolbox__select">
                 <h3>VÄLJ KATEGORI</h3>
-                <input type="radio" name="category" id="1" value="1">
+                <input type="radio" name="category" id="1" value="1" <?php if($row['categoriesid'] == 1) echo "checked"; ?> >
                 <label for="1">Solglasögon</label>
-                <input type="radio" name="category" id="2" value="2">
+                <input type="radio" name="category" id="2" value="2" <?php if($row['categoriesid'] == 2) echo "checked"; ?> >
                 <label for="2">Klockor</label>
-                <input type="radio" name="category" id="3" value="3">
+                <input type="radio" name="category" id="3" value="3" <?php if($row['categoriesid'] == 3) echo "checked"; ?> >
                 <label for="3">Inredning</label>
             </div>
 
-            <input type="submit" name="submit" value="Skapa inlägg" class="create_btn">
+            <input type="submit" name="submit" value="uppdatera" class="create_btn">
             <a class="delete" href="./handlers/handle_blogposts.php?action=delete&id=<?= $_GET['postId'] ?>&img=<?= $row['img'] ?>">Ta bort inlägg!</a>
 
         </div>

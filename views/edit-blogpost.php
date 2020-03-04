@@ -1,4 +1,5 @@
 <?php
+
 include("./includes-partials/header.php");
 include("./includes-partials/database_connection.php");
 
@@ -16,7 +17,7 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
 
     // Skapa query för att redigera inlägg
 
-    $getquery = "SELECT id, title, content, img FROM Posts WHERE Id = " . $_GET['postId'] . ";";
+    $getquery = "SELECT id, title, content, img, categoriesid FROM Posts WHERE Id = " . $_GET['postId'] . ";";
     $dataFromDB = $dbh->query($getquery);
 
 

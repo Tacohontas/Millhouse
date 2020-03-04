@@ -16,7 +16,7 @@ foreach ($BlogPosts->getBlogPosts() as $BlogPost) {
     echo "<b> Datum: </b>" . $BlogPost['date_posted'] . "<br />";
     echo "<a href='index.php?page=view&postId=".$BlogPost['id']."'> Läs inlägg</a><br>";
     echo "<a href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera</a><br>";
-    echo '<a href="./handlers/handle_blogposts.php?action=delete&id=' . $BlogPost['id'] . '&img='.$BlogPost['img'].'">Delete!</a><br>';
+    echo '<a class="delete" href="./handlers/handle_blogposts.php?action=delete&id=' . $BlogPost['id'] . '&img='.$BlogPost['img'].'">Delete!</a><br>';
     
 
 
