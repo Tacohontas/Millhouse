@@ -31,6 +31,7 @@ echo "<div class='view-container'>";
   //--- Hämtar kommentarer på valt blogginlägget ---// 
   $Comments = new COMMENT($dbh);
   $Comments->fetchCommentByPostID($_GET['postId']);
+  echo "<h2 class='comment-header'>Kommentarer</h2>";
 
   foreach( $Comments->getComments() as $Comment) {
     include("./includes-partials/display_comment.php");

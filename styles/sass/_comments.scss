@@ -1,17 +1,61 @@
+.comment-header {
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 2px 2px $shadow;
+    font-size: 34px;
+}
+
+
+
 //Visa kommentarer
 .comment_container {
+    display: grid;
+    justify-items: center;
+    margin: 1.5rem;
     
-    border: 2px solid grey;
+
+    h2 {
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
 }
 .comment {
-    background-color: white;
+    background-color: $box-col_2;
+    box-shadow: 5px 5px 0 grey;
     height: 8rem;
-    width: 18rem;
-    border: 2px solid grey;
+    width: 40rem;
     font-family: $font;
-}
-.username {
-    text-transform: capitalize;
+    border-left-style: double;
+    border-color: black;
+    border-width: thick;
+    padding: .7rem;
+
+    p {
+        display: inline;
+        color: $shadow;
+        
+        
+        
+    }
+    h4 {
+        color: black;
+        margin: 15px 0 15px 0;
+        
+    }
+
+    a:link, a:visited {
+        color: $shadow;
+
+    }
+    a:hover {
+        color: $accent-col;
+    }
+
+    .username {
+        text-transform: capitalize;
+        font-weight: bold;
+    }
 }
 
 
@@ -19,11 +63,17 @@
 //Lämna kommentar 
 .leave_comment-container {
     border: 2px solid grey;
+    display: grid;
+    justify-items: center;
+    height: 20rem;
+
+}
+form {
+    background-color: $box-col;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    box-shadow: 15px 15px 0 grey;
     width: 40rem;
-
-
 }
 
 

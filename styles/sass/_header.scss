@@ -3,7 +3,6 @@
     color: $font-col;
     background-color: $box-col;
     border-bottom: 20px solid $shadow;
-    //border: 20px solid $shadow;
     padding: 1rem;
     margin: 0 auto;
     
@@ -14,7 +13,7 @@
     font-family: $header-font;
     text-transform: uppercase;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 
     a:link, a:visited {
         color: $font-col;
@@ -47,7 +46,6 @@ li {
         font-size: 0.6rem;
     }
     .header {
-        
-        height: 6rem;
+        height: none;
     }
 }
