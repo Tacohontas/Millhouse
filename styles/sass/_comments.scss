@@ -68,12 +68,19 @@
     height: 20rem;
 
 }
-form {
-    background-color: $box-col;
+.comment_form {
+    background-color: $box-col_2;
     display: flex;
+    font-family: $font;
     flex-direction: column;
     box-shadow: 15px 15px 0 grey;
-    width: 40rem;
+    width: 60rem;
+
+    p {
+        border: 2px solid grey;
+        font-size: 18px;
+        
+    }
 }
 
 
