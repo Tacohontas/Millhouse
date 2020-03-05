@@ -115,7 +115,6 @@
 
         //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
         $title = htmlspecialchars($title);
-
         // I text-areafältet använder vi oss av CKEDITOR som har inbyggd hackerattack-lösning!
         // $blogpost = htmlspecialchars($blogpost);
 
@@ -168,11 +167,10 @@
                 $query .= "UPDATE PostsSET IMG = :blogpostImg WHERE Id = :postId;";
                 $sth = $dbh->prepare($query);
                 $sth->bindParam(':blogpostImg', $fileDestination);
-                echo $fileDestination;
             }
 
             $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
-            echo $_POST['postId'];
+
 
             // Ifall inlägget kommer från create-blogpost
         } else {
@@ -183,15 +181,12 @@
         }
         //--- Hacker attack prevent - Bind variablerna ---//
         $sth->bindParam(':title', $title);
-        echo $title;
-        $sth->bindParam(':blogpost', $blogpost);
-        echo $blogpost;
-        $sth->bindParam(':catid', $CatID);
-        echo $CatID;
 
-        echo "<pre>";
-        echo $query;
-        echo "</pre>";
+        $sth->bindParam(':blogpost', $blogpost);
+
+        $sth->bindParam(':catid', $CatID);
+
+
 
 
         $return = $sth->execute();
@@ -200,8 +195,10 @@
         echo "</pre>";
 
         if (!$return) {
+            echo "\nPDO::errorInfo():\n";
             print_r($dbh->errorInfo());
         } else {
+            // die;
             header("location:../index.php?page=admin");
             echo "det funka";
             die;

@@ -2,7 +2,7 @@
 
     <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
         <div class="compose">
-            <input type="text" name="blogpost_title" placeholder="Här skriver du din rubrik..." class="title" required>
+            <input type="text" name="blogpost_title" placeholder="Här skriver du din rubrik..." class="title" required maxlength="40">
             <textarea id="content" name="blogpost" cols="30" rows="20" required></textarea>
         </div>
 

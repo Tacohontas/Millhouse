@@ -1,4 +1,4 @@
-console.log("TJENAREJEEEHH");
+console.log("sdszz");
 
 function preview_image(event) {
   let reader = new FileReader();
@@ -18,13 +18,32 @@ function preview_image(event) {
 
 // Dubbelkolla så att admin vill ta bort inlägg.
 
-var aElems = document.querySelector(".delete");
+let deleteClass = document.querySelectorAll(".delete");
+let publishClass = document.querySelectorAll(".publish");
 
-aElems.addEventListener("click", function(e) {
+let confirmDelete = function confirm_Choice(e){
   var check = confirm("Är du säker på att du vill ta bort inlägget?");
   if (check == true) {
     return true;
   } else {
     e.preventDefault();
   }
-});
+}
+
+let confirmPublish= function confirm_Choice(e){
+  var check = confirm("Är du säker på att du vill publicera inlägget?");
+  if (check == true) {
+    return true;
+  } else {
+    e.preventDefault();
+  }
+}
+
+for(let i = 0; i<deleteClass.length; i++){
+  deleteClass[i].addEventListener("click", confirmDelete);
+};
+
+for(let i = 0; i<publishClass.length; i++){
+publishClass[i].addEventListener("click", confirmPublish);
+};
+

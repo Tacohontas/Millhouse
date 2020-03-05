@@ -1,0 +1,62 @@
+.postmenu_wrapper{
+    background-color: $box-col;
+    padding: 1rem;
+}
+
+
+
+.postmenu_headings {
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 4fr;
+  width: 65rem;
+  padding: .5rem;
+  border-bottom: 4px solid white;
+}
+
+.headings__actions {
+  text-align: center;
+}
+
+.postmenu_post {
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: .5rem;
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 65rem;
+  justify-content: center;
+  align-items: center;
+
+  &__actions {
+    margin: 0 auto;
+    padding: .5rem;
+    background-color: $accent-col;
+    color: white;
+    text-decoration: none;
+    font-family: $header-font;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 115px;
+    height: 50px;
+  }
+
+  .delete{
+    // @extend button;
+    background: rgb(194, 43, 43);
+  }
+
+  .publish{
+      background-color: green;
+  }
+
+  .hide{
+      background-color: gray;
+  }
+}
