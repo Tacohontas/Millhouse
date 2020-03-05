@@ -1,6 +1,6 @@
 <div class="comment_container">
 
-<div class="comment">
+<div class="comment" id="comment">
     <p class="username"><?= $Comment['Username']?></p> <p>skriver: <?= $Comment['Date_posted']?>  </p>
     <h4> <?= $Comment['Content']?></h4>
     

@@ -5,8 +5,6 @@
     border-bottom: 20px solid $shadow;
     padding: 1rem;
     margin: 0 auto;
-    
-    //box-shadow: 20px 20px 0 $shadow;
 }
 .header-nav_links {
     display: flex;
@@ -47,7 +45,5 @@ li {
     }
     .header {
         height: none;
-        // Händer någon vajsing när man sätter ny height här!
-        // height: 6rem;
     }
 }

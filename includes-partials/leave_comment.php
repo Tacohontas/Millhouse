@@ -3,9 +3,8 @@
 
         <input type="hidden" name="postId" value="<?=$_GET['postId'] ?>">
         <input type="hidden" name="userid" value="<?= $_SESSION['UsersId'] ?>">
-        <p>Namn: <?= $_SESSION['Username'] ?></p>
-        <p>Kommentar:</p>
+        <p> <?= $_SESSION['Username'] ?></p>
         <textarea name="comment" id="" cols="30" rows="5" placeholder="Skriv din kommentar"></textarea>
-        <input type="submit" value="Kommentera">
+        <input class="comment_btn" type="submit" value="Kommentera">
     </form>
     </div>
