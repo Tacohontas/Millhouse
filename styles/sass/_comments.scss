@@ -5,8 +5,6 @@
     font-size: 34px;
 }
 
-
-
 //Visa kommentarer
 .comment_container {
     display: grid;
@@ -21,10 +19,10 @@
 
 }
 .comment {
-    background-color: $box-col_2;
+    background-color: $font-col;
     box-shadow: 5px 5px 0 grey;
     height: 8rem;
-    width: 40rem;
+    width: 35rem;
     font-family: $font;
     border-left-style: double;
     border-color: black;
@@ -34,9 +32,6 @@
     p {
         display: inline;
         color: $shadow;
-        
-        
-        
     }
     h4 {
         color: black;
@@ -58,29 +53,56 @@
     }
 }
 
-
-
 //Lämna kommentar 
 .leave_comment-container {
-    border: 2px solid grey;
+    border-top: 20px solid $shadow;
     display: grid;
     justify-items: center;
-    height: 20rem;
+    background-color: $box-col;
 
 }
 .comment_form {
-    background-color: $box-col_2;
-    display: flex;
+    background-color: $box-col;
     font-family: $font;
-    flex-direction: column;
-    box-shadow: 15px 15px 0 grey;
-    width: 60rem;
-
+    width: 37rem;
     p {
+        text-transform: capitalize;
+        font-size: 20px;
+        background-color: $font-col;
+        margin: 1rem;
+        padding: 1rem;
         border: 2px solid grey;
+    }
+    textarea {
+        margin: 1rem;
+        padding: 1rem;
+        width: 35.3rem;
+        font-family: $font;
         font-size: 18px;
-        
+    }
+    .comment_btn {
+        text-align: center;
+        padding: 1rem 3rem;
+        background-color: $box-col;
+        color: $font-col;
+        text-decoration: none;
+        border: 2px solid $font-col;
+        font-family: $header-font;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: flex;
+        margin: 1rem;
     }
 }
 
+@media screen and (max-width: 800px) {
 
+    .comment {
+        width: 20rem;
+    }
+
+    .comment_form {
+        width: 25rem;
+    }
+}

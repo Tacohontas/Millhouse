@@ -1,10 +1,10 @@
 <div class='blogpost'>
-  <h2><?= $BlogPost['title'] ?></h2>
-  <?= $BlogPost['date_posted'] ?> |
-  <?= $BlogPost['name'] ?>
-  <img src="images/<?= $BlogPost['img'] ?>" alt='Här ska det va en bild' maxheight=800 width=380>
-  <p><?= $BlogPost['content'] ?></p>
+  <h2 class="heading"><?= $BlogPost['title'] ?></h2> 
+   <?= $BlogPost['name'] ?> |
+  <?= $BlogPost['date_posted'] ?>
+  <img class="blogpost_img" src="images/<?= $BlogPost['img'] ?>" alt='Här ska det va en bild' maxheight=800 width=380>
+  <div class="blogpost_content"><?= $BlogPost['content'] ?></div>
   <?php if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1) {
-    echo "<h3><a href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera </a></h3>";
-  } ?>
+    echo "<h3 class='edit_btn'><a href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera </a></h3>";
+  }?> 
 </div>

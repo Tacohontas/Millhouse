@@ -15,7 +15,7 @@ if(@$_GET['error'] == true){
   echo $_GET['errormessage'];
 
 }
-echo "<div class='view-container'>";
+
 
   //--- HÄMTAR VALT BLOGGINLÄGG ---//
   $BlogPosts = new BLOGPOST($dbh);
@@ -25,7 +25,7 @@ echo "<div class='view-container'>";
       include("./includes-partials/full_blogpost.php");
   };
 
-  echo "</div>";
+  
 
 
   //--- Hämtar kommentarer på valt blogginlägget ---// 
