@@ -73,7 +73,7 @@
             $fileExt = explode('.', $fileName);
             $fileActualExt = strtolower(end($fileExt));
             //Vilka filer vi tillåter
-            $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+            $allowed = array('jpg', 'jpeg', 'png');
 
             if ($fileSize > 0) {
                 if (in_array($fileActualExt, $allowed)) {
@@ -82,6 +82,9 @@
                             $fileNameNew = md5(reset($fileExt)) . "." . $fileActualExt;
                             $fileDestination = '../images/uploads/' . $fileNameNew;
                             if ($fileSize == filesize($fileDestination)) {
+
+                                // HÄR KOLLAR DEN EFTER BILDEN SOM TAGITS BORT PÅ RAD 40
+                                // die;
                                 /* 
                             Om det finns en fil med exakt samma filstorlek 
                             så finns troligen bilden redan uppladdad.
@@ -89,6 +92,7 @@
                                 $errorMessages = "Filen finns redan <br />";
                                 $errors = true;
                             } else {
+                                // die;
                                 $emptyFile = false;
                                 move_uploaded_file($fileTmpName, $fileDestination);
                             }
@@ -162,11 +166,13 @@
                     unlink($_GET['erase_old_img']);
                 }
                 $query .= "UPDATE PostsSET IMG = :blogpostImg WHERE Id = :postId;";
+                $sth = $dbh->prepare($query);
                 $sth->bindParam(':blogpostImg', $fileDestination);
+                echo $fileDestination;
             }
 
             $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
-
+            echo $_POST['postId'];
 
             // Ifall inlägget kommer från create-blogpost
         } else {
@@ -177,10 +183,21 @@
         }
         //--- Hacker attack prevent - Bind variablerna ---//
         $sth->bindParam(':title', $title);
+        echo $title;
         $sth->bindParam(':blogpost', $blogpost);
+        echo $blogpost;
         $sth->bindParam(':catid', $CatID);
+        echo $CatID;
+
+        echo "<pre>";
+        echo $query;
+        echo "</pre>";
+
 
         $return = $sth->execute();
+        echo "<pre>";
+        $sth->debugDumpParams();
+        echo "</pre>";
 
         if (!$return) {
             print_r($dbh->errorInfo());
@@ -191,3 +208,6 @@
         };
     }
     ?>
+
+
+
