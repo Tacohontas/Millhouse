@@ -28,7 +28,7 @@
         margin-bottom: 2rem;
       }
 
-      #cke_1_contents{
+      #cke_1_contents {
         height: 200px;
       }
     }
@@ -121,7 +121,7 @@
       // width: 259px;
     }
 
-    .delete{
+    .delete {
       @extend button;
       background: rgb(194, 43, 43);
     }
@@ -129,20 +129,14 @@
 }
 
 @media screen and (max-width: 430px) {
-
-  .create_blogpost__form{
+  .create_blogpost__form {
     // background: red;
     grid-template-areas:
-    "compose"
-    "toolbox";
+      "compose"
+      "toolbox";
 
-
-    .toolbox{
+    .toolbox {
       margin: 0;
     }
-
   }
-
-
-
 }

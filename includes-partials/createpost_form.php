@@ -3,16 +3,19 @@
     <form action="./handlers/handle_blogposts.php" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
         <div class="compose">
             <input type="text" name="blogpost_title" placeholder="Här skriver du din rubrik..." class="title" required maxlength="40">
-            <textarea id="content" name="blogpost" cols="30" rows="20" required></textarea>
+            <textarea id="content" name="blogpost" cols="30" rows="20" required>
+                <?php
+// Ifall texten var för lång för så klistras den gamla in för att inte behöva skriva om från början.
+                echo @$_GET['failedPost'];
+
+                ?>
+                </textarea>
         </div>
 
         <div class="toolbox">
             <div class="toolbox__upload">
 
                 <div class="upload_preview">
-                    <!-- testa design -->
-                    <!-- <img class="upload_preview__img" src="images/wupaegne press 2018 copy.jpg"> -->
-                    <!-- <h4 class="upload_preview__text">wupaegne press 2018 copy.jpg</h4> -->
                     <img class="upload_preview__img" src="">
                     <h4 class="upload_preview__text">
                         <div class="img-placeholder">

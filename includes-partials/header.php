@@ -57,3 +57,11 @@
         </nav>
 
     </header>
+
+    <?php
+    //--- ERROR - Ifall du lämnat tomma fält (redirectad från handle_comments eller handle_posts) ---//
+
+    if (@$_GET['error'] == true) {
+        echo "<div class='error_box'><h2>{$_GET['errormessage']}</h2></div>";
+    }
+    ?>

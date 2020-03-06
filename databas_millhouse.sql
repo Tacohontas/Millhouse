@@ -24,7 +24,7 @@ CREATE Table Users(
 CREATE Table Posts(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Title` VARCHAR(40) NOT NULL, 
-    `Content` VARCHAR(2000) NOT NULL,
+    `Content` VARCHAR(20000) NOT NULL,
     `IMG` VARCHAR(100),
     `CategoriesId` INT NOT NULL,
     `Date_posted` DATETIME NOT NULL DEFAULT current_timestamp(),

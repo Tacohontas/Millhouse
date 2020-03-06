@@ -8,13 +8,10 @@ include("./includes-partials/database_connection.php");
 
 ?>
 
+
+
 <?php
 
-//--- ERROR - Ifall du lämnat tomma kommentarsfält (redirectat från handle_comments) ---//
-if(@$_GET['error'] == true){
-  echo $_GET['errormessage'];
-
-}
 
 
   //--- HÄMTAR VALT BLOGGINLÄGG ---//

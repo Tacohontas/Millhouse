@@ -1,9 +1,7 @@
-.postmenu_wrapper{
-    background-color: $box-col;
-    padding: 1rem;
+.postmenu_wrapper {
+  background-color: $box-col;
+  padding: 1rem;
 }
-
-
 
 .postmenu_headings {
   margin: 0 auto;
@@ -11,8 +9,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 4fr;
   width: 65rem;
-  padding: .5rem;
+  padding: 0.5rem;
   border-bottom: 4px solid white;
+  text-shadow: 2px 2px $shadow;
 }
 
 .headings__actions {
@@ -22,7 +21,7 @@
 .postmenu_post {
   margin: 0 auto;
   margin-top: 1rem;
-  padding: .5rem;
+  padding: 0.5rem;
 
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -32,12 +31,12 @@
 
   &__actions {
     margin: 0 auto;
-    padding: .5rem;
+    padding: 0.4rem;
     background-color: $accent-col;
     color: white;
     text-decoration: none;
     font-family: $header-font;
-    font-size: .8rem;
+    font-size: 0.8rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     display: flex;
@@ -45,18 +44,19 @@
     align-items: center;
     width: 115px;
     height: 50px;
+    border: 0.5px solid $font-col;
   }
 
-  .delete{
+  .delete {
     // @extend button;
     background: rgb(194, 43, 43);
   }
 
-  .publish{
-      background-color: green;
+  .publish {
+    background-color: green;
   }
 
-  .hide{
-      background-color: gray;
+  .hide {
+    background-color: gray;
   }
 }

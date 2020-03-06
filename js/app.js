@@ -1,5 +1,6 @@
-console.log("sdszz");
+console.log("sdszsssz");
 
+// --- Visa bild innan den laddas upp i create-blogpost_form --- // 
 function preview_image(event) {
   let reader = new FileReader();
   reader.onload = () => {
@@ -16,7 +17,7 @@ function preview_image(event) {
   reader.readAsDataURL(event.target.files[0]);
 }
 
-// Dubbelkolla så att admin vill ta bort inlägg.
+//  --- Dubbelkolla så att admin vill ta bort inlägg. --- //
 
 let deleteClass = document.querySelectorAll(".delete");
 let publishClass = document.querySelectorAll(".publish");

@@ -22,11 +22,17 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     
     //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
     $comment = htmlspecialchars($comment);
-    $errorMessages = htmlspecialchars($errorMessages);
+    $errors = false;
+
 
     //--- ERROR meddelanden för kommentarer ---//
     if (empty($comment)) {
-        $errorMessages .= "Skriv din kommentar <br />";
+        $errorMessages .= "Skriv din kommentar. ";
+        $errors = true;
+    }
+
+    if (strlen($comment) > 200){
+        $errorMessages .= "Din kommentar innehåller för många tecken. ";
         $errors = true;
     }
 

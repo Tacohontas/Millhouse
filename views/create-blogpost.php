@@ -6,10 +6,6 @@ include("./includes-partials/header.php");
 
 @session_start();
 
-if(@$_GET['error'] == true){
-    echo $_GET['errormessage'];
-}
-
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     include("./includes-partials/createpost_form.php");
 } else {

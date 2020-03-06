@@ -48,6 +48,15 @@ button , input[type=submit]{
   display: flex;
 }
 
+// ERROR BOX
+
+.error_box{
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: .5rem;
+  }
+
 @import 'home';
 @import 'header';
 @import 'view-blogpost';

@@ -83,8 +83,7 @@
                             $fileDestination = '../images/uploads/' . $fileNameNew;
                             if ($fileSize == filesize($fileDestination)) {
 
-                                // HÄR KOLLAR DEN EFTER BILDEN SOM TAGITS BORT PÅ RAD 40
-                                // die;
+                              
                                 /* 
                             Om det finns en fil med exakt samma filstorlek 
                             så finns troligen bilden redan uppladdad.
@@ -120,18 +119,29 @@
 
         //--- ERROR meddelanden ---//
 
+        if (strlen($title) > 20){
+            $errorMessages .= "Din titel är för lång. Den får innehålla max 20 tecken. ";
+            $errors = true;
+        };
+
+        if (strlen($blogpost) > 2000){
+            $errorMessages .= "Ditt inlägg är för långt. Den får innehålla max 2000 tecken. ";
+            $errorsGET = "&failedPost={$_POST['blogpost']}";
+            $errors = true;
+        };
+
         if (empty($title)) {
-            $errorMessages .= "Skriv en rubrik <br />";
+            $errorMessages .= "Skriv en rubrik. ";
             $errors = true;
         }
 
         if (empty($blogpost)) {
-            $errorMessages .= "Skriv ditt blogginlägg <br />";
+            $errorMessages .= "Skriv ditt blogginlägg. ";
             $errors = true;
         }
 
         if (empty($CatID)) {
-            $errorMessages .= "Välj kategori <br />";
+            $errorMessages .= "Välj kategori. ";
             $errors = true;
         }
 
@@ -139,11 +149,11 @@
 
             // Ifall fält lämnas tomma i edit-miljön:
             if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
-                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}");
+                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
                 die;
             } else {
                 // Om fält lämnats tomma i create post-miljön:
-                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}");
+                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
                 die;
             }
             die;
@@ -185,8 +195,6 @@
         $sth->bindParam(':blogpost', $blogpost);
 
         $sth->bindParam(':catid', $CatID);
-
-
 
 
         $return = $sth->execute();

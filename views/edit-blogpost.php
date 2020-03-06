@@ -7,12 +7,6 @@ include("./includes-partials/database_connection.php");
 @session_start();
 
 
-// ERROR - Ifall du lämnat tomma fält (redirectat från handle_blogposts)
-if (@$_GET['error'] == true) {
-    echo $_GET['errormessage'];
-}
-
-
 if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
 
     // Skapa query för att redigera inlägg
