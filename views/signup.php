@@ -6,8 +6,8 @@ include("./includes-partials/header.php")
 
 
 <form method="POST" action="./handlers/handle_signup.php">
-    <input type="text" name="username" placeholder="username" required>
-    <input type="password" name="password" placeholder="password" required><br>
+    <input type="text" name="username" placeholder="username" maxlength="20" required>
+    <input type="password" name="password" placeholder="password" minlength="12" required><br>
     <input type="email" name="email" placeholder="mail" required><br>
     <!-- Har kommenterat bort is_admin-fältet eftersom vi gör de användarna manuellt. -->
     <!-- <input type="number" name="is_admin" placeholder="0 eller 1" required> -->
