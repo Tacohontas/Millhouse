@@ -3,6 +3,7 @@
     text-transform: uppercase;
     text-shadow: 2px 2px $shadow;
     font-size: 34px;
+    margin-bottom: 1rem;
 }
 
 //Visa kommentarer
@@ -103,6 +104,15 @@
     }
 
     .comment_form {
-        width: 25rem;
+        width: 23rem;
+
+        textarea {
+            margin: 1rem;
+            padding: 1rem;
+            width: 21rem;
+            font-family: $font;
+            font-size: 18px;
+        }
+
     }
 }
