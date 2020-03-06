@@ -9,11 +9,21 @@ include("./includes-partials/database_connection.php");
 
 
 if(isset($_SESSION['Username'])){
+
+    echo  'Sortera: <a href="index.php?page=home&order=ascending"> Äldsta</a> <a href="index.php?page=home&order=descending">Nyaste</a>';
+
     echo "<div class='grid-container'>";
 
     //--- HÄMTAR ALLA BLOGGINLÄGG ---//
     $BlogPosts = new BLOGPOST($dbh);
-    $BlogPosts->fetchAll('published');
+
+    $order = "desc";
+
+    if(isset($_GET['order']) && $_GET['order'] == "ascending") {
+        $order = "ASC";
+    }
+
+    $BlogPosts->fetchAll('published', $order);
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
         
@@ -23,7 +33,7 @@ if(isset($_SESSION['Username'])){
 
     echo "</div>";
 } else {
-    echo "<marquee><h1>LOGGA IN TACK!</h1></marquee>";
+    include("./includes-partials/login_form.php");
 }
 
 
