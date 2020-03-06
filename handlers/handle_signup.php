@@ -39,6 +39,11 @@ if(strlen($_POST['password']) < 12){
     $errors = true;
 }
 
+if(strlen($email) > 254){
+    $errorMessages .= 'Ogiltig mailadress. ';
+    $errors = true;
+}
+
 
 // --- Kollar ifall användaren redan finns i databasen:
 $getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password' OR Username='$username';";

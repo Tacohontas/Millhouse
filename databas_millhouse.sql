@@ -15,7 +15,7 @@ CREATE Table Users(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Username` VARCHAR(20) NOT NULL,
     `Password` VARCHAR(40) NOT NULL,
-    `Email` VARCHAR(50) NOT NULL, 
+    `Email` VARCHAR(254) NOT NULL, 
     `REG_DATE` DATETIME NOT NULL DEFAULT current_timestamp(),
     `IsAdmin` BOOLEAN NOT NULL DEFAULT "0",
     PRIMARY KEY(Id)
