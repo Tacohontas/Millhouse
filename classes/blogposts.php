@@ -23,10 +23,8 @@ class BLOGPOST {
             $query.= " WHERE IsPublished = 1 ";
         }
 
+        // --- SORTERING ---//
         $query.= " ORDER BY date_posted {$order}";
-
-        //$query = "SELECT Posts.id, title, content, img, date_posted, name, isPublished FROM Posts 
-        //JOIN Categories ON Categories.Id = CategoriesId WHERE IsPublished = {$isPublished} ORDER BY date_posted {$order}";
 
         $return_array = $this->databasehandler->query($query);
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
@@ -45,22 +43,7 @@ class BLOGPOST {
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
     }
-
-      // --- SORTERING ---//
-     
-      /* 
-        public function setOrder($order) {
-
-        $order = "DESC";
     
-        $query = "SELECT Posts.id, title, content, img, date_posted, name, isPublished FROM Posts 
-        JOIN Categories ON Categories.Id = CategoriesId ORDER BY date_posted $order";
-
-        $return_array = $this->databasehandler->query($query);
-        $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
-        $this->blogposts = $return_array;
-        } */
-
 }
 
 
