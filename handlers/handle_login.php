@@ -16,19 +16,8 @@ if (isset($_SESSION['Username'])) {
     $password = (isset($_SESSION["Password"])) ? $_SESSION["Password"] : "";
 }
 
+// -- ERROR ZONE --
 $errors = false;
-
-if (empty($username) || empty($password)){
-    $errorMessages .= "Du måste fylla i alla fält. ";
-    $errors = true;
-}
-
-if ($errors == true) {
-
-        header("location:../index.php?page=home&error=true&errormessage={$errorMessages}");
-        die;
-}
-
 
 $getquery = "SELECT Id, Username, Password, IsAdmin FROM Users WHERE Username='$username' AND Password='$password'";
 
@@ -38,23 +27,37 @@ $row = $dataFromDB->fetch(PDO::FETCH_ASSOC);
 
 // Ifall vårt svar från DB är tomt = finns ingen användare med den infon
 if (empty($row)) {
-    //Skickar tillbaka till login med en hårdkodad GET-variabel
-    header("location:../index.php?page=login&error=true");
-} else {
-    // Skicka vidare till inloggningslanding
-    echo "Du kan logga in";
-    session_start();
-
-    // Sparar användarnamn och lösen i SESSION-variabeln. Den är TYP som localstorage i JS. 
-    $_SESSION['Username'] = $row['Username'];
-    $_SESSION['Password'] = $row['Password'];
-    $_SESSION['IsAdmin'] = $row['IsAdmin'];
-    $_SESSION['UsersId'] = $row['Id'];
-
-
-    if ($_SESSION['IsAdmin'] == 1) {
-        header("location:../index.php?page=admin");
-    } else {
-        header("location:../index.php");
-    };
+    $errorMessages .= "Fel användarnamn/lösen. ";
+    $errors = true;
 }
+
+
+if (empty($username) || empty($password)) {
+    $errorMessages = "Du måste fylla i alla fält. ";
+    $errors = true;
+}
+
+
+
+if ($errors == true) {
+
+    header("location:../index.php?page=home&error=true&errormessage={$errorMessages}");
+    die;
+}
+
+
+// INLOGGNING
+session_start();
+
+// Sparar användarnamn och lösen i SESSION-variabeln.
+$_SESSION['Username'] = $row['Username'];
+$_SESSION['Password'] = $row['Password'];
+$_SESSION['IsAdmin'] = $row['IsAdmin'];
+$_SESSION['UsersId'] = $row['Id'];
+
+
+if ($_SESSION['IsAdmin'] == 1) {
+    header("location:../index.php?page=admin");
+} else {
+    header("location:../index.php");
+};

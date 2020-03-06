@@ -45,7 +45,8 @@
                 if (isset($_SESSION['Username'])) {
                     echo '<li><a href="./handlers/logout.php">Logga ut</a></li>';
                 } else {
-                    echo '<li><a href="index.php?page=login">Logga in</a></li>';
+                    // Ta bort login.php?
+                    echo '<li><a href="index.php?page=home">Logga in</a></li>';
                     echo '<li>|</li>';
                     echo '<li><a href="index.php?page=signup">Registrera</a></li>';
                 };
