@@ -38,6 +38,13 @@
     margin-top: 1rem;
     box-shadow: 15px 15px 0 grey;
   }
+
+.edit_btn{
+  @extend button;
+  background-color: $accent-col;
+  border: 2px solid white;
+}
+
 }
 
 @media screen and (max-width: 800px) {
