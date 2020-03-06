@@ -19,15 +19,26 @@ echo "</pre>";
 
 // Ifall alla fält ej är ifyllda
 if (empty($username) || empty($password) || empty($email)) {
-    $errorMessages .= "Fyll i alla fält.";
+    $errorMessages .= "Fyll i alla fält. ";
     $errors = true;
 }
 
 // Ifall användarnamnet innehåller ej tillåtna tecken.
 if (preg_match('/[^A-za-z0-9]/', $username)) {
-    $errorMessages .= 'Användarnamnet får enbart innehålla siffror och bokstäver mellan A-Z.';
+    $errorMessages .= 'Användarnamnet får enbart innehålla siffror och bokstäver mellan A-Z. ';
     $errors = true;
 }
+
+if(strlen($username) > 20){
+    $errorMessages .= 'Användarnamnet är för långt! Får max vara 20 tecken. ';
+    $errors = true;
+}
+
+if(strlen($_POST['password']) < 12){
+    $errorMessages .= 'Ditt lösenord måste innerhålla minst 12 tecken. ';
+    $errors = true;
+}
+
 
 // --- Kollar ifall användaren redan finns i databasen:
 $getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password' OR Username='$username';";
