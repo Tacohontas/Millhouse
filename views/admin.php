@@ -9,6 +9,7 @@ include("./includes-partials/database_connection.php");
 <div class="postmenu_headings">
     <h2>Post-id</h2>
     <h2>Rubrik</h2>
+    <h2>Bild</h2>
     <h2>Datum</h2>
     <h2 class="headings__actions">Actions</h2>
 </div>
