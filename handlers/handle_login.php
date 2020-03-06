@@ -16,13 +16,18 @@ if (isset($_SESSION['Username'])) {
     $password = (isset($_SESSION["Password"])) ? $_SESSION["Password"] : "";
 }
 
-// Ifall alla fält ej är ifyllda
-if (empty($username) || empty($password)) {
-    // Skickas till login.php med hårdkodad getvariabel som visar error-meddelande
-    header("location:../index.php?page=login&error=emptyvalues");
-    die;
+$errors = false;
+
+if (empty($username) || empty($password)){
+    $errorMessages .= "Du måste fylla i alla fält. ";
+    $errors = true;
 }
 
+if ($errors == true) {
+
+        header("location:../index.php?page=home&error=true&errormessage={$errorMessages}");
+        die;
+}
 
 
 $getquery = "SELECT Id, Username, Password, IsAdmin FROM Users WHERE Username='$username' AND Password='$password'";
