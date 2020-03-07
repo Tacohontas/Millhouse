@@ -2,13 +2,32 @@ body {
     background-color: $background-color;
 
 }
+.sort {
+    display: flex;
+    font-family: $header-font;
+    justify-content: center;
+    font-size: 1rem;
+    color: $shadow;
+    margin-top: 1rem;
+
+    a:link, a:visited {
+        color: $shadow;
+        margin: 4px;
+    }
+    a:hover {
+        color: $font-col;
+        margin: 4px;
+    }
+
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     justify-items: center;
     grid-row-gap: 3rem;
     grid-column-gap: 8rem;
-    margin: 2rem 5rem 2rem 5rem;
+    margin: 1rem 5rem 2rem 5rem;
 }
 
 .blogpost_section {

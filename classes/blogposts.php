@@ -10,7 +10,6 @@ class BLOGPOST {
 
     }
 
-
     public function fetchAll($isPublished = 0, $order = "DESC") {
         // Hämtar alla inlägg.
         // -- Defaultvärde hämtar alla inlägg oavsett om de är publicerade eller inte.
@@ -31,10 +30,6 @@ class BLOGPOST {
         $this->blogposts = $return_array;
     }
 
-    public function getBlogPosts() {
-        return $this->blogposts;
-    }
-
     public function fetchByPostID($postId) {
         $query = "SELECT Posts.id, title, content, img, date_posted, name, isPublished FROM Posts
          JOIN Categories ON Categories.Id = CategoriesId WHERE Posts.id = ".$postId.";";
@@ -43,7 +38,20 @@ class BLOGPOST {
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
     }
-    
+
+    //-s-o-s- BEHÖVER HACKER ATTACK PREVENT -s-o-s- //
+
+    public function searchBlogPosts($searchQ) {
+        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
+
+        $return_array = $this->databasehandler->query($query);
+        $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
+        $this->blogposts = $return_array;
+
+    }
+    public function getBlogPosts() {
+        return $this->blogposts;
+    }
 }
 
 

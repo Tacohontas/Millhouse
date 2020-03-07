@@ -34,8 +34,6 @@
         die;
     }
 
-
-
     // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
     if (isset($_GET['action']) && $_GET['action'] == "delete") {
         // Här hämtar vi vår hårdkodade _GET-variabel

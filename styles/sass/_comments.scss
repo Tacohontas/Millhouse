@@ -67,20 +67,22 @@
     background-color: $box-col;
     font-family: $font;
     width: 37rem;
+    
     p {
         text-transform: capitalize;
         font-size: 20px;
         background-color: $font-col;
         margin: 1rem;
         padding: 1rem;
-        border: 2px solid grey;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.096);
     }
     textarea {
         margin: 1rem;
         padding: 1rem;
-        width: 35.3rem;
+        width: 35rem;
         font-family: $font;
-        font-size: 18px;
+        font-size: 20px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.096);
     }
     .comment_btn {
         text-align: center;
