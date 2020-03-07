@@ -4,25 +4,25 @@ include("./classes/blogposts.php");
 include("./includes-partials/database_connection.php");
 ?>
 <?php
-//--- Visar ett meddelande med den inloggades username från DB + Utloggning---//
+
 @session_start();
 
 
 if(isset($_SESSION['Username'])){
 
-    echo  'Sortera: <a href="index.php?page=home&order=ascending"> Äldsta</a> <a href="index.php?page=home&order=descending">Nyaste</a>';
-
+    //--- Sorterings länkar ---//
+    echo  '<div class="sort" > <a class="sort_link" href="index.php?page=home&order=descending">Senaste</a> | <a class="sort_link" href="index.php?page=home&order=ascending"> Äldsta </a></div>';
     echo "<div class='grid-container'>";
 
-    //--- HÄMTAR ALLA BLOGGINLÄGG ---//
     $BlogPosts = new BLOGPOST($dbh);
 
-    $order = "desc";
-
+    //--- Sorterings ---//
+    $order = "DESC";
     if(isset($_GET['order']) && $_GET['order'] == "ascending") {
         $order = "ASC";
     }
-
+    
+    //--- HÄMTAR ALLA BLOGGINLÄGG ---//
     $BlogPosts->fetchAll('published', $order);
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {

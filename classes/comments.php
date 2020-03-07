@@ -13,7 +13,8 @@ class COMMENT {
     }
 
     public function fetchCommentByPostID($postId) {
-        $query = "SELECT Comments.Id, Content, Date_posted, PostsId, UsersId, Username FROM Comments JOIN Users ON Users.id = UsersId WHERE PostsId = ".$postId.";";
+        $query = "SELECT Comments.Id, Content, Date_posted, PostsId, UsersId, Username FROM Comments
+        JOIN Users ON Users.id = UsersId WHERE PostsId = ".$postId.";";
         
         $return_an_array = $this->databasehandler->query($query);
         $return_an_array = $return_an_array->fetchAll(PDO::FETCH_ASSOC);

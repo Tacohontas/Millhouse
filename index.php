@@ -17,6 +17,9 @@ if ($page == "signup") {
 } else if ($page == "view") {
 
     include("views/view-blogpost.php");
+} else if ($page == "search") {
+
+    include("views/search-page.php");
 } else if (@$_SESSION['IsAdmin'] == true) {
 
     if ($page == "edit") {

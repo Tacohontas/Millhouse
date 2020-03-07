@@ -43,6 +43,8 @@
                 }
 
                 if (isset($_SESSION['Username'])) {
+                    echo '<li><a href="index.php?page=search">Sök</a></li>';
+                    echo '<li>|</li>';
                     echo '<li><a href="./handlers/logout.php">Logga ut</a></li>';
                 } else {
                     echo '<li><a href="index.php?page=login">Logga in</a></li>';
