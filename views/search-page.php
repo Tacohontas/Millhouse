@@ -16,7 +16,7 @@ include("./includes-partials/database_connection.php");
     echo "<h2 class='search-title'>Sökresultat</h2>";
 
     $BlogPosts = new BLOGPOST($dbh);
-    $BlogPosts->searchBlogPosts($_GET['searchQ']);
+    $BlogPosts->searchBlogPosts(htmlentities($_GET['searchQ']));
 
     foreach( $BlogPosts->getBlogPosts() as $BlogPost) {
     echo "<div class='blogpost'>";
@@ -28,14 +28,6 @@ include("./includes-partials/database_connection.php");
     echo "<div class='blogpost_content'>" . $BlogPost['content'] ."</div>";
     echo "</div>";
 
-        // --- Hämta länkade inlägg ---//
-    /* echo "<div class='blogpost_section'>";
-    echo "<h2><a href='index.php?page=view&postId=" . $BlogPost['id'] .">". $BlogPost['title'] ."</a> </h2>";
-    if(isset($BlogPost['img'])){
-    echo "<img class='blogpost_img' src='images/". $BlogPost['img'] . "alt='Här ska det va en bild' maxheight=600 width=300>";
-    };
-    $BlogPost['date_posted'];
-    echo "</div>"; */
 
     };
 } else {
