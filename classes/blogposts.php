@@ -4,7 +4,7 @@ class BLOGPOST {
     private $dbh;
     private $blogposts;
 
-    public function __construct($dbh) {
+    function __construct($dbh) {
 
         $this->databasehandler = $dbh;
 
@@ -39,19 +39,33 @@ class BLOGPOST {
         $this->blogposts = $return_array;
     }
 
-    //-s-o-s- BEHÖVER HACKER ATTACK PREVENT -s-o-s- //
-
     public function searchBlogPosts($searchQ) {
-        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
+
+        $query = "SELECT title, content, img, date_posted, name, isPublished FROM Posts JOIN Categories ON Categories.Id = CategoriesId 
+        WHERE name LIKE :searchQ OR title LIKE :searchQ";
+
+        //--- Endast Admin kan söka på dolda inlägg ---//
+        if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 0) {
+            $query.= " AND isPublished = 1 OR content LIKE :searchQ AND isPublished = 1 ";
+        } else {
+            $query.= " OR content LIKE :searchQ";
+        };
+
+        $sth = $this->databasehandler->prepare($query);
+        $queryParam = '%'. $searchQ . '%';
+        $sth->bindParam(':searchQ', $queryParam);
+
+        $return_array = $sth->execute();
 
         $return_array = $this->databasehandler->query($query);
-        $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
+        $return_array = $sth->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
 
     }
     public function getBlogPosts() {
         return $this->blogposts;
     }
+    
 }
 
 
