@@ -2,7 +2,7 @@
     <form action="./handlers/handle_blogposts.php?updatePost=true&erase_old_img=<?= $row['img'] ?>" method="POST" enctype="multipart/form-data" class="create_blogpost__form">
         <div class="compose">
             <input type="hidden" name="postId" value="<?= $_GET['postId'] ?>">
-            <input type="text" class="title" name="blogpost_title" value="<?= $row['title'] ?>" required>
+            <input type="text" class="title" name="blogpost_title" value="<?= $row['title'] ?>" maxlength="20" required>
             <textarea name="blogpost" id="content" cols="30" rows="20" required><?= $row['content'] ?></textarea>
         </div>
 

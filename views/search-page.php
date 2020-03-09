@@ -31,9 +31,10 @@ if (!empty($_GET['searchQ'])) {
             echo "</div>";
         };
     } else {
-        // fixa i errorrutan
+        session_start();
+        $_SESSION['error_message'] = $errorMessages;
         $errorMessages = "Hoppsan! Det finns inga inlägg som innehåller det sökordet.";
-        header("location:./index.php?page=search&error=true&errormessage={$errorMessages}");
+        header("location:./index.php?page=search&error=true");
         die;
     }
 } else {

@@ -124,7 +124,6 @@
 
         if (strlen($blogpost) > 2000){
             $errorMessages .= "Ditt inlägg är för långt. Den får innehålla max 2000 tecken. ";
-            $errorsGET = "&failedPost={$_POST['blogpost']}";
             $errors = true;
         };
 
@@ -145,13 +144,15 @@
 
         if ($errors == true) {
 
+            session_start();
+            $_SESSION['error_message'] = $errorMessages;
             // Ifall fält lämnas tomma i edit-miljön:
             if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
-                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
+                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true");
                 die;
             } else {
                 // Om fält lämnats tomma i create post-miljön:
-                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
+                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true");
                 die;
             }
             die;
@@ -211,6 +212,5 @@
         };
     }
     ?>
-
 
 

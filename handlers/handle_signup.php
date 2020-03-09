@@ -29,17 +29,17 @@ if (preg_match('/[^A-za-z0-9]/', $username)) {
     $errors = true;
 }
 
-if(strlen($username) > 20){
+if (strlen($username) > 20) {
     $errorMessages .= 'Användarnamnet är för långt! Får max vara 20 tecken. ';
     $errors = true;
 }
 
-if(strlen($_POST['password']) < 12){
+if (strlen($_POST['password']) < 12) {
     $errorMessages .= 'Ditt lösenord måste innerhålla minst 12 tecken. ';
     $errors = true;
 }
 
-if(strlen($email) > 254){
+if (strlen($email) > 254) {
     $errorMessages .= 'Ogiltig mailadress. ';
     $errors = true;
 }
@@ -57,7 +57,10 @@ if (!count($result) == 0) {
 }
 
 if ($errors == true) {
-    header("location:../index.php?page=signup&error=true&errormessage={$errorMessages}");
+    session_start();
+    $_SESSION['error_message'] = $errorMessages;
+
+    header("location:../index.php?page=signup&error=true");
     die;
 }
 
