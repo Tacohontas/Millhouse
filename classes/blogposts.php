@@ -39,8 +39,6 @@ class BLOGPOST {
         $this->blogposts = $return_array;
     }
 
-    //-s-o-s- BEHÖVER HACKER ATTACK PREVENT -s-o-s- //
-
     public function searchBlogPosts($searchQ) {
 
         $query = "SELECT title, content, img, date_posted, name, isPublished FROM Posts JOIN Categories ON Categories.Id = CategoriesId 
