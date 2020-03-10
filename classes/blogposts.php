@@ -42,7 +42,7 @@ class BLOGPOST {
     public function searchBlogPosts($searchQ) {
 
         $query = "SELECT title, content, img, date_posted, name, isPublished FROM Posts JOIN Categories ON Categories.Id = CategoriesId 
-        WHERE name LIKE :searchQ OR title LIKE :searchQEntities";
+        WHERE title LIKE :searchQ OR content LIKE :searchQEntities OR name LIKE :searchQ;";
 
         //--- Endast Admin kan söka på dolda inlägg ---//
         if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 0) {
@@ -61,10 +61,7 @@ class BLOGPOST {
 
 
         $return_array = $sth->execute();
-        // $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
-        // ÅÄÖ (etc) är i htmlentities i content, men inte i title. Så därför görs $searchQ om till htmlentities i content.
-        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%".htmlentities($searchQ)."%'";
-
+        
 
         $return_array = $this->databasehandler->query($query);
         $return_array = $sth->fetchAll(PDO::FETCH_ASSOC);
