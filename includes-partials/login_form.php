@@ -1,4 +1,4 @@
-
+<h1 class="title">Välkommen</h1>
 <form class="form" action="./handlers/handle_login.php" method="post">
     <input class="input" type="text" placeholder="Användarnamn" name="username" required>
     <input class="input" type="password" placeholder="Lösenord" name="password" required>
