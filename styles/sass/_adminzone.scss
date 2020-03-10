@@ -39,6 +39,7 @@
     text-shadow: 1px 1px $shadow;
     font-family: $header-font;
     text-transform: uppercase;
+    word-break: break-word;
   }
 
   &__actions {

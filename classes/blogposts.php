@@ -42,7 +42,10 @@ class BLOGPOST {
     //-s-o-s- BEHÖVER HACKER ATTACK PREVENT -s-o-s- //
 
     public function searchBlogPosts($searchQ) {
-        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
+        // $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
+        // ÅÄÖ (etc) är i htmlentities i content, men inte i title. Så därför görs $searchQ om till htmlentities i content.
+        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%".htmlentities($searchQ)."%'";
+
 
         $return_array = $this->databasehandler->query($query);
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);

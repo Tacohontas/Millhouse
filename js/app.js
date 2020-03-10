@@ -56,7 +56,7 @@ let checkForErrors = function stopFromPosting(e) {
   let textarea = document.getElementById("content");
   CKEDITOR.instances.content.updateElement();
   if (textarea.value.length > 2000) {
-    alert("Inlägget är för långt!");
+    alert(`Inlägget är för långt! Du behöver ta bort ${textarea.value.length - 2000} tecken`);
     e.preventDefault();
     return;
   }
@@ -67,6 +67,7 @@ let checkForErrors = function stopFromPosting(e) {
       error = false;
     }
   }
+
 
   if (error == true) {
     alert("Du måste välja en kategori!");
