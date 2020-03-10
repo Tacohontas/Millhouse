@@ -16,7 +16,7 @@ if (!empty($_GET['searchQ'])) {
     echo "<h2 class='search-title'>Sökresultat</h2>";
 
     $BlogPosts = new BLOGPOST($dbh);
-    $BlogPosts->searchBlogPosts(htmlentities($_GET['searchQ']));
+    $BlogPosts->searchBlogPosts(($_GET['searchQ']));
 
 
     if (!empty($BlogPosts->getBlogPosts())) {
@@ -31,9 +31,9 @@ if (!empty($_GET['searchQ'])) {
             echo "</div>";
         };
     } else {
-        // fixa i errorrutan
-        $errorMessages = "Hoppsan! Det finns inga inlägg som innehåller det sökordet.";
-        header("location:./index.php?page=search&error=true&errormessage={$errorMessages}");
+        $errorMessages = "Hoppsan! Det finns inga inlägg som innehåller '{$_GET['searchQ']}'.";
+        $_SESSION['error_message'] = $errorMessages;
+        header("location:./index.php?page=search&error=true");
         die;
     };
 } else {

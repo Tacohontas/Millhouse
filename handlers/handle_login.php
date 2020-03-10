@@ -40,8 +40,9 @@ if (empty($username) || empty($password)) {
 
 
 if ($errors == true) {
-
-    header("location:../index.php?page=home&error=true&errormessage={$errorMessages}");
+    session_start();
+    $_SESSION['error_message'] = $errorMessages;
+    header("location:../index.php?page=home&error=true");
     die;
 }
 

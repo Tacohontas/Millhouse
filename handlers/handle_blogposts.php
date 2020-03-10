@@ -81,7 +81,7 @@
                             $fileDestination = '../images/uploads/' . $fileNameNew;
                             if ($fileSize == filesize($fileDestination)) {
 
-                              
+
                                 /* 
                             Om det finns en fil med exakt samma filstorlek 
                             så finns troligen bilden redan uppladdad.
@@ -117,14 +117,14 @@
 
         //--- ERROR meddelanden ---//
 
-        if (strlen($title) > 20){
+
+        if (mb_strlen($title) > 20) {
             $errorMessages .= "Din titel är för lång. Den får innehålla max 20 tecken. ";
             $errors = true;
         };
 
-        if (strlen($blogpost) > 2000){
+        if (strlen($blogpost) > 2000) {
             $errorMessages .= "Ditt inlägg är för långt. Den får innehålla max 2000 tecken. ";
-            $errorsGET = "&failedPost={$_POST['blogpost']}";
             $errors = true;
         };
 
@@ -145,13 +145,18 @@
 
         if ($errors == true) {
 
+            session_start();
+            $_SESSION['error_message'] = $errorMessages;
             // Ifall fält lämnas tomma i edit-miljön:
             if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
-                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
+                header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true");
                 die;
             } else {
-                // Om fält lämnats tomma i create post-miljön:
-                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true&errormessage={$errorMessages}&failedPost={$_POST['blogpost']}");
+                // Om det blir errors i create post-miljön:
+                // Ta bort bild ifall den ändå lyckats laddats upp.
+                unlink($fileDestination);
+
+                header("location:../index.php?page=create&postId={$_POST['postId']}&error=true");
                 die;
             }
             die;
@@ -211,6 +216,3 @@
         };
     }
     ?>
-
-
-

@@ -10,9 +10,9 @@ $db = "Millhouse_blog";
 // Try (MAKE CONNECTION)
 try {
     $dsn = "mysql:host=$host;dbname=$db;";
-    $dbh = new PDO($dsn, $user, $pass);
+    $dbh = new PDO($dsn, $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-// ON ERROR
+    // ON ERROR
 } catch (PDOException $e) {
     // Hämtar felmeddelande från PDO
     echo "Error!" . $e->getMessage() . "<br>";

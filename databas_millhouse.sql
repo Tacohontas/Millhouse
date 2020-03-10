@@ -23,7 +23,7 @@ CREATE Table Users(
     
 CREATE Table Posts(
     `Id` INT NOT NULL AUTO_INCREMENT,
-    `Title` VARCHAR(40) NOT NULL, 
+    `Title` VARCHAR(40) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL, 
     `Content` VARCHAR(20000) NOT NULL,
     `IMG` VARCHAR(100),
     `CategoriesId` INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE Table Posts(
     
 CREATE Table Comments(
     `Id` INT NOT NULL AUTO_INCREMENT,
-    `Content` VARCHAR(200) NOT NULL,
+    `Content` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL,
     `Date_posted` DATETIME NOT NULL DEFAULT current_timestamp(),
     `PostsId` INT NOT NULL,
     `UsersId` INT NOT NULL,

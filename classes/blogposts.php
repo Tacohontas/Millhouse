@@ -42,7 +42,7 @@ class BLOGPOST {
     public function searchBlogPosts($searchQ) {
 
         $query = "SELECT title, content, img, date_posted, name, isPublished FROM Posts JOIN Categories ON Categories.Id = CategoriesId 
-        WHERE name LIKE :searchQ OR title LIKE :searchQ";
+        WHERE name LIKE :searchQ OR title LIKE :searchQEntities";
 
         //--- Endast Admin kan söka på dolda inlägg ---//
         if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 0) {
@@ -54,8 +54,17 @@ class BLOGPOST {
         $sth = $this->databasehandler->prepare($query);
         $queryParam = '%'. $searchQ . '%';
         $sth->bindParam(':searchQ', $queryParam);
+        // ÅÄÖ (etc) är i htmlentities i content, men inte i title. Så därför görs $searchQ om till htmlentities i content.
+        $queryParam2 = '%'. htmlentities($searchQ) . '%';
+        $sth->bindParam(':searchQEntities', $queryParam2);
+       
+
 
         $return_array = $sth->execute();
+        // $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%{$searchQ}%'";
+        // ÅÄÖ (etc) är i htmlentities i content, men inte i title. Så därför görs $searchQ om till htmlentities i content.
+        $query = "SELECT title, content, img, date_posted, isPublished FROM Posts WHERE title LIKE '%{$searchQ}%' OR content LIKE '%".htmlentities($searchQ)."%'";
+
 
         $return_array = $this->databasehandler->query($query);
         $return_array = $sth->fetchAll(PDO::FETCH_ASSOC);
