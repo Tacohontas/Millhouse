@@ -17,22 +17,15 @@
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
     <script type="text/javascript" src="js/app.js" defer></script>
-
-
 </head>
 
 <body>
 
     <header class="header">
-        <h1 class="logo-text">MILLHOUSE</h1>
+        <a href="index.php?page=home"><h1 class="logo-text">MILLHOUSE</h1></a>
         <nav class="header-nav">
             <ul class="header-nav_links">
-                <li>
-                    <a href="index.php?page=home">Hem</a>
-                </li>
-
-                <li>|</li>
-
+                
                 <?php
                 // Admin-nav
                 if (@$_SESSION['IsAdmin'] == true) {

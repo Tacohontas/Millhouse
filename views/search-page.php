@@ -4,16 +4,16 @@ include("./classes/blogposts.php");
 include("./includes-partials/database_connection.php");
 ?>
 
-<div class="search-form">
+<div class="form">
     <form method="GET" action="./handlers/handle_search.php">
-        <input class="search-input" type="text" name="searchQ" placeholder="Search" required>
+        <input class="input" type="text" name="searchQ" placeholder="Search" required>
         <input class="search" type="submit" value="Sök">
     </form>
 </div>
 <?php
 if (!empty($_GET['searchQ'])) {
 
-    echo "<h2 class='search-title'>Sökresultat</h2>";
+    echo "<h2 class='title'>Sökresultat</h2>";
 
     $BlogPosts = new BLOGPOST($dbh);
     $BlogPosts->searchBlogPosts(($_GET['searchQ']));

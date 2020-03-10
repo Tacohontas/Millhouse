@@ -33,6 +33,7 @@ if(isset($_SESSION['Username'])){
 
     echo "</div>";
 } else {
+    // --- Ej inloggad användare ser inloggning som startsida --- //
     include("./includes-partials/login_form.php");
 }
 

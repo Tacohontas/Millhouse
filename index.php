@@ -10,7 +10,7 @@ if ($page == "signup") {
     include("views/signup.php");
 } else if ($page == "login") {
 
-    include("views/login.php");
+    include("views/home.php");
 } else if ($page == "create") {
 
     include("views/create-blogpost.php");
