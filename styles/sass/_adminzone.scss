@@ -9,7 +9,7 @@
   margin: 0 auto;
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 4fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
   // width: 65rem;
   padding: 0.5rem;
   border-bottom: 4px solid white;
@@ -31,7 +31,7 @@
 
   &__info {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
 

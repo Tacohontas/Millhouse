@@ -1,10 +1,11 @@
 <div class="postmenu_post">
     <div class="postmenu_post__info">
-        <p><?= $BlogPost['id'] ?></p>
-        <p><?= $BlogPost['title'] ?></p>
+        <p><?= $BlogPost['id'] ?></p> <!-- Inläggs-id -->
+        <p><?= $BlogPost['title'] ?></p> <!-- Inläggets rubrik -->
         <!-- $BlogPost['img']'s url börjar med en extra punkt som vill ta bort här -->
-        <img class="postmenu_post__img" src="<?= substr($BlogPost['img'], 1) ?>" alt="">
-        <p><?= $BlogPost['date_posted'] ?></p>
+        <img class="postmenu_post__img" src="<?= substr($BlogPost['img'], 1) ?>" alt=""> <!-- Inläggets bild -->
+        <p><?= $BlogPost['name'] ?></p> <!-- Namnet på kategorin -->
+        <p><?= $BlogPost['date_posted'] ?></p> <!-- Datumet inlägget postades -->
     </div>
     <div class="postmenu_post__actions">
         <a class="action" href='index.php?page=view&postId=<?= $BlogPost['id'] ?>'>Se inlägg</a>

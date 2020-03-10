@@ -10,6 +10,7 @@ include("./includes-partials/database_connection.php");
     <h2>Post-id</h2>
     <h2>Rubrik</h2>
     <h2>Bild</h2>
+    <h2>Kategori</h2>
     <h2>Datum</h2>
     <h2 class="headings__actions">Actions</h2>
 </div>

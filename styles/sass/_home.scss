@@ -48,6 +48,7 @@ body {
     a:link, a:visited {
         color: $font-col;
         text-shadow: 2px 3px $shadow;
+        word-break: break-all;
     }
     a:hover {
         color: $background-color;
