@@ -1,12 +1,83 @@
-<hr>
-&copy; Copyright 2020
-</body>
+</div> <!-- Här stängs #content-wrap som öppnas i header.php -->
+<footer class="footer">
+	<div class="footer__linknav">
+		<div class="linknav__griditem">
+			<a href="index.php?page=home">
+				<h1 class="footer__logo">MILLHOUSE</h1>
+			</a>
+		</div>
+		<?php
+		if (isset($_SESSION['Username'])) {
+			echo '<ul class="linknav__griditem">
+			<li class="linknav_link"><a href="index.php?page=home">Hem</a></li>
+			<li>|</li>
+			<li class="linknav_link">
+				<a href="index.php?page=search">SÖK</a>
+			</li>
+			<li>|</li>
+			<li class="linknav_link">
+				<a href="./handlers/logout.php">Logga ut</a>
+			</li>
+		</ul>';
+		}
+		?>
+		<div class="linknav__griditem">
+			<p><span>&copy;</span>2020 Fanny Sundlöf & Jonathan Undhagen</p>
+		</div>
+	</div>
+	<div class="footer__contact">
+		<div class="contact__griditem">
+			<i class="fas fa-map-marker-alt fa-lg"></i>
+			<p><span>Exempelgatan 25</span>123 45 Exempelstaden</p>
+		</div>
+		<div class="contact__griditem">
+			<i class="fas fa-phone-alt fa-lg"></i>
+			<p>08 - 123 45 67</p>
+		</div>
+		<div class="contact__griditem">
+			<i class="fas fa-envelope fa-lg"></i>
+			<p>info@Millhouse.com</p>
+		</div>
+	</div>
+	<div class="footer__aboutus">
+		<div class="aboutus-wrapper">
+			<div class="aboutus-container">
+				<h2 class="aboutus__header">Om oss</h2>
+				<p class="aboutus__info">
+					Vi är ett grossistföretag som erbjuder kläder, accessoarer och mindre inredningsartiklar
+					till mode- och livsstilsbutiker.
+				</p>
+			</div>
+			<ul class="aboutus__icons-container">
+				<li class="aboutus__icon">
+					<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+				</li>
+				<li class="aboutus__icon">
+					<a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+				</li>
+				<li class="aboutus__icon">
+					<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+				</li>
+				<li class="aboutus__icon">
+					<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Den här visas vid mediaquerias max-width 800px -->
+	<div class="footer__copy-hidden">
+		<p><span>&copy;</span>2020 Fanny Sundlöf & Jonathan Undhagen</p>
+	</div>
+</footer>
+
+</div>
+<!--- Här stängs #page-container som öppnas i header.php -->
+
 
 <script>
 	// CKEDITOR config. 
 	// 1. Sätt ett id ett element i din form 
 	// 2. Lägg in den i CKEDITOR.replace(ditt_id) för att använda CKeditors funktioner.
-
 	CKEDITOR.replace('content', {
 
 		// Define the toolbar:
@@ -55,7 +126,7 @@
 
 		// Make the editing area bigger than default.
 		height: 400,
-		
+
 		// autoGrow_minHeight = 300,
 		// autoGrow_maxHeight = 600,
 		// autoGrow_bottomSpace = 50,
@@ -189,6 +260,3 @@
 		]
 	});
 </script>
-
-
-</html>
