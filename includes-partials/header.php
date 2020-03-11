@@ -17,15 +17,19 @@
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
     <script type="text/javascript" src="js/app.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 </head>
 
 <body>
 
     <header class="header">
-        <a href="index.php?page=home"><h1 class="logo-text">MILLHOUSE</h1></a>
+        <a href="index.php?page=home">
+            <h1 class="logo-text">MILLHOUSE</h1>
+        </a>
         <nav class="header-nav">
             <ul class="header-nav_links">
-                
+
                 <?php
                 // Admin-nav
                 if (@$_SESSION['IsAdmin'] == true) {
@@ -53,10 +57,13 @@
         </nav>
 
     </header>
+    <!-- Här öppnas page-container & content-wrap som stängs i footer.php -->
+    <div id="page-container"> 
+    <div id="content-wrap">
 
-    <?php
-    //--- ERROR - Ifall du lämnat tomma fält (redirectad från handle_comments eller handle_posts) ---//
-    if (@$_GET['error'] == true) {
-        echo "<div class='error_box'><h2>{$_SESSION['error_message']}</h2></div>";
-    }
-    ?>
+        <?php
+        //--- ERROR - Ifall du lämnat tomma fält (redirectad från handle_comments eller handle_posts) ---//
+        if (@$_GET['error'] == true) {
+            echo "<div class='error_box'><h2>{$_SESSION['error_message']}</h2></div>";
+        }
+        ?>

@@ -10,7 +10,6 @@
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
-  // width: 65rem;
   padding: 0.5rem;
   border-bottom: 4px solid white;
   text-shadow: 2px 2px $shadow;
@@ -27,7 +26,6 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  // width: 65rem;
 
   &__info {
     display: grid;
@@ -72,7 +70,6 @@
   }
 
   .delete {
-    // @extend button;
     background: rgb(194, 43, 43);
   }
 
@@ -89,7 +86,6 @@
   .postmenu_post {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    // border-bottom: 2px solid white;
     &__actions {
       .action {
         margin: 0;
@@ -101,7 +97,7 @@
   }
 
   .postmenu_headings {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .headings__actions {
@@ -111,7 +107,6 @@
 
 @media screen and (max-width: 800px) {
   .postmenu_post {
-    // border-bottom: 2px solid white;
     &__actions {
       grid-template-columns: 1fr 1fr;
     }
