@@ -1,6 +1,5 @@
 body {
     background-color: $background-color;
-
 }
 .sort {
     display: flex;
@@ -33,10 +32,8 @@ body {
 .blogpost_section {
     display: grid;
     width: 25rem;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-row-gap: .5rem;
     background-color: $box-col;
-    text-align: center;
     justify-items: center;
     box-shadow: 20px 20px 0 $shadow;
     text-transform: uppercase;

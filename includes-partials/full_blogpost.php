@@ -10,5 +10,9 @@ if(isset($BlogPost['img'])){
 <div class="blogpost_content"><?= $BlogPost['content'] ?></div>
   <?php if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 1) {
     echo "<a class='edit_btn' href='index.php?page=edit&postId=" . $BlogPost['id'] . "'>Redigera </a>";
-  }?> 
+  } else {
+    echo "<a class='edit_btn' href='index.php?page=home'>Tillbaka </a>";
+  }
+  
+  ?> 
 </div>
