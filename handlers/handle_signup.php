@@ -13,7 +13,9 @@ print_r($_POST);
 echo "</pre>";
 
 
-// ERRORZONE
+// ERRORZONE INIT
+$errors = false;
+$errorMessages = "";
 
 
 
@@ -46,20 +48,39 @@ if (strlen($email) > 254) {
 
 
 // --- Kollar ifall användaren redan finns i databasen:
-$getquery = "SELECT Id, Username, Password FROM Users WHERE Username='$username' AND Password='$password' OR Username='$username';";
-$dataFromDB = $dbh->query($getquery);
-$result = $dataFromDB->fetchAll();
+$query_getUsername = "SELECT Id, Email, Username FROM Users WHERE Username = :username OR Email = :email ;";
 
-// Får vi 0 rader tillbaka från vår DB så betyder det att användaren ej finns.
-if (!count($result) == 0) {
-    $errorMessages .= "Användarnamn är upptaget.";
+
+$sth = $dbh->prepare($query_getUsername);
+$sth->bindParam(':username', $username);
+$sth->bindParam(':email', $email);
+
+
+$return_array = $sth->execute();
+$return_array = $dbh->query($query_getUsername);
+$return_array = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+$resultUsername = $return_array[0]['Username'];
+$resultEmail = $return_array[0]['Email'];
+
+// Använder ej '.=' operatorn här för vi vill inte visa båda felmeddelandena om något av de är true.
+
+if (!empty($resultUsername) && $resultUsername == $username){
+    $errorMessages = "Användarnamn är upptaget.";
     $errors = true;
+    echo $errorMessages;
+}
+
+if (!empty($resultEmail) && $resultEmail == $email) {
+    $errorMessages = "Det finns redan en användare registrerad på den här mail-adressen";
+    $errors = true;
+    echo $errorMessages;
+
 }
 
 if ($errors == true) {
     session_start();
     $_SESSION['error_message'] = $errorMessages;
-
     header("location:../index.php?page=signup&error=true");
     die;
 }
