@@ -2,11 +2,14 @@
 
 ## Installering
 
-Installera alla dev dependencies med node package manager (npm) genom att skriva "npm install" i terminalen.
+Installera alla dev dependencies med node package manager (npm) genom att skriva: `npm install` i terminalen.
+
 Använd databas_millhouse.sql - scriptet för att importera databasen.
 SQLscriptet innehåller två användare från början. "Admin" och "User".
 Inloggningsuppgifter till Millhouse:
-Användarnamn: Admin, Lösen: Password
+Användarnamn: Admin
+
+Lösen: Password
 Användarnamn User, Lösen: Password
 
 I database_connection.php skriver du in dina serverinställningar.
