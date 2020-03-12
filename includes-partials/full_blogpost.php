@@ -1,3 +1,4 @@
+<!-- Här hämtas hela blogginlägget för att visas i view-blogpost -->
 <div class='blogpost'>
   <h2 class="heading"><?= $BlogPost['title'] ?></h2> 
    <?= $BlogPost['name'] ?> |

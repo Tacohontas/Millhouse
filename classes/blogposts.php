@@ -1,12 +1,12 @@
 <?php 
 
 class BLOGPOST {
-    private $dbh;
+    private $databasehandler;
     private $blogposts;
 
-    function __construct($dbh) {
+    function __construct($databasehandler) {
 
-        $this->databasehandler = $dbh;
+        $this->databasehandler = $databasehandler;
 
     }
 
@@ -14,10 +14,10 @@ class BLOGPOST {
         // Hämtar alla inlägg.
         // -- Defaultvärde hämtar alla inlägg oavsett om de är publicerade eller inte.
 
-        // --- Skriver användare in 1 eller 'published' så kommer enbart publicerade inlägg hämtas.
         $query = "SELECT Posts.id, title, content, img, date_posted, name, isPublished FROM Posts 
         JOIN Categories ON Categories.Id = CategoriesId";
         
+        // --- Enbart publicerade inlägg hämtas --- //
         if($isPublished === "published") {
             $query.= " WHERE IsPublished = 1 ";
         }
@@ -29,7 +29,7 @@ class BLOGPOST {
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
     }
-
+    // --- När du klickat på ett specifikt blogginlägg du vill visa --- //
     public function fetchByPostID($postId) {
         $query = "SELECT Posts.id, title, content, img, date_posted, name, isPublished FROM Posts
          JOIN Categories ON Categories.Id = CategoriesId WHERE Posts.id = ".$postId.";";
@@ -38,13 +38,13 @@ class BLOGPOST {
         $return_array = $return_array->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
     }
-
+    //--- När du söker i blogginlägg ---//
     public function searchBlogPosts($searchQ) {
 
         $query = "SELECT title, content, img, date_posted, name, isPublished FROM Posts JOIN Categories ON Categories.Id = CategoriesId 
         WHERE title LIKE :searchQ OR content LIKE :searchQEntities OR name LIKE :searchQ;";
 
-        //--- Endast Admin kan söka på dolda inlägg ---//
+        //--- Endast Admin kan se dolda inlägg i söken---//
         if (isset($_SESSION['IsAdmin']) && $_SESSION['IsAdmin'] == 0) {
             $query.= " AND isPublished = 1 OR content LIKE :searchQ AND isPublished = 1 ";
         } else {
@@ -58,16 +58,13 @@ class BLOGPOST {
         $queryParam2 = '%'. htmlentities($searchQ) . '%';
         $sth->bindParam(':searchQEntities', $queryParam2);
        
-
-
         $return_array = $sth->execute();
         
-
-        $return_array = $this->databasehandler->query($query);
         $return_array = $sth->fetchAll(PDO::FETCH_ASSOC);
         $this->blogposts = $return_array;
 
     }
+    // --- Hämtar blogginlägget ---//
     public function getBlogPosts() {
         return $this->blogposts;
     }

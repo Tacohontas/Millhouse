@@ -1,3 +1,4 @@
+<!-- Här hämtas endast en preview av blogginlägget som visas på home -->
 <div class='blogpost_section'>
     <h2><a href="index.php?page=view&postId=<?= $BlogPost['id'] ?>"> <?= $BlogPost['title'] ?></a> </h2>
     <?php 

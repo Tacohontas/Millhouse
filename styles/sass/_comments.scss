@@ -4,6 +4,7 @@
     text-shadow: 2px 2px $shadow;
     font-size: 34px;
     margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 //Visa kommentarer
@@ -57,7 +58,6 @@
 
 //Lämna kommentar 
 .leave_comment-container {
-    border-top: 15px solid grey;
     display: grid;
     justify-items: center;
 
@@ -84,17 +84,8 @@
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.096);
     }
     .comment_btn {
-        text-align: center;
-        padding: 1rem 3rem;
-        background-color: $box-col;
-        color: $font-col;
-        text-decoration: none;
+        @extend button;
         border: 2px solid $font-col;
-        font-family: $header-font;
-        font-size: 1.1rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        display: flex;
         margin: 1rem;
     }
 }
