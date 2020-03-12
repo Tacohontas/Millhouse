@@ -1,0 +1,111 @@
+.comment-header {
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 2px 2px $shadow;
+    font-size: 34px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+//Visa kommentarer
+.comment_container {
+    display: grid;
+    justify-items: center;
+    margin: 1.5rem;
+    
+
+    h2 {
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+}
+.comment {
+    background-color: $font-col;
+    box-shadow: 5px 5px 0 grey;
+    height: 8rem;
+    width: 35rem;
+    font-family: $font;
+    border-left-style: double;
+    border-color: black;
+    border-width: thick;
+    padding: .7rem;
+
+    p {
+        display: inline;
+        color: $shadow;
+    }
+    h4 {
+        color: black;
+        margin: 15px 0 15px 0;
+        word-wrap: break-word;
+        
+    }
+
+    a:link, a:visited {
+        color: $shadow;
+
+    }
+    a:hover {
+        color: $accent-col;
+    }
+
+    .username {
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+}
+
+//Lämna kommentar 
+.leave_comment-container {
+    display: grid;
+    justify-items: center;
+
+}
+.comment_form {
+    font-family: $font;
+    width: 37rem;
+    margin-bottom: 1rem;
+    
+    p {
+        text-transform: capitalize;
+        font-size: 20px;
+        background-color: $font-col;
+        margin: 1rem;
+        padding: 1rem;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.096);
+    }
+    textarea {
+        margin: 1rem;
+        padding: 1rem;
+        width: 35rem;
+        font-family: $font;
+        font-size: 20px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.096);
+    }
+    .comment_btn {
+        @extend button;
+        border: 2px solid $font-col;
+        margin: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .comment {
+        width: 20rem;
+    }
+
+    .comment_form {
+        width: 23rem;
+
+        textarea {
+            margin: 1rem;
+            padding: 1rem;
+            width: 21rem;
+            font-family: $font;
+            font-size: 18px;
+        }
+
+    }
+}

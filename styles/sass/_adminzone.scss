@@ -1,0 +1,125 @@
+.postmenu_wrapper {
+  background-color: $box-col;
+  padding: 1rem;
+  max-width: 1338px;
+  margin: 0 auto;
+}
+
+.postmenu_headings {
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 5fr;
+  padding: 0.5rem;
+  border-bottom: 4px solid white;
+  text-shadow: 2px 2px $shadow;
+}
+
+.headings__actions {
+  text-align: center;
+}
+
+.postmenu_post {
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  &__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    text-shadow: 1px 1px $shadow;
+    font-family: $header-font;
+    text-transform: uppercase;
+    word-break: break-word;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .action {
+      margin: 0 auto;
+      padding: 0.4rem;
+      background-color: $accent-col;
+      color: white;
+      text-decoration: none;
+      font-family: $header-font;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 115px;
+      height: 50px;
+      border: 0.5px solid $font-col;
+    }
+  }
+
+  &__img {
+    max-height: 70px;
+    max-width: 70px;
+    border: 1px solid white;
+  }
+
+  .delete {
+    background: rgb(194, 43, 43);
+  }
+
+  .publish {
+    background-color: green;
+  }
+
+  .hide {
+    background-color: gray;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .postmenu_post {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    &__actions {
+      .action {
+        margin: 0;
+        margin-top: 5px;
+        width: 100%;
+        height: 50px;
+      }
+    }
+  }
+
+  .postmenu_headings {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .headings__actions {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .postmenu_post {
+    &__actions {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .postmenu_headings {
+    font-size: 70%;
+  }
+
+  .postmenu_post {
+    &__info {
+      font-size: 70%;
+    }
+  }
+}

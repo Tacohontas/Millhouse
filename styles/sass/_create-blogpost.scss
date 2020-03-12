@@ -1,0 +1,143 @@
+.create_blogpost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: $box-col;
+
+  &__form {
+    // max-height: 500px;
+    // width: 100%;
+    font-family: $font;
+    text-align: center;
+    display: grid;
+    grid-template-areas:
+      "compose toolbox"
+      "compose toolbox";
+
+    .compose {
+      grid-area: compose;
+      margin: 1rem;
+
+      .title {
+        font-family: $header-font;
+        height: 45px;
+        width: 25rem;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      #cke_1_contents {
+        height: 200px;
+      }
+    }
+
+    .toolbox {
+      grid-area: toolbox;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background: $background-color;
+      margin: 1rem;
+      padding: 1rem;
+
+      .upload_preview {
+        margin: 0.5rem;
+
+        .img-placeholder {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px dotted white;
+          width: 200px;
+          height: 100px;
+        }
+
+        &__img {
+          max-width: 250px;
+          max-height: 200px;
+        }
+      }
+
+      .upload__input {
+        input {
+          // Gör man display:none på input:file så skickas ingen info till db.
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
+        }
+
+        label {
+          @extend button;
+          height: 30px;
+          width: 200px;
+          display: inline-block;
+          cursor: pointer;
+          padding: 8px;
+          margin: 0.5rem;
+        }
+
+        label:hover {
+          background-color: $link-col;
+        }
+      }
+
+      .toolbox__select {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          display: none;
+        }
+
+        label {
+          @extend button;
+          height: 30px;
+          width: 200px;
+          display: inline-block;
+          cursor: pointer;
+          margin: 0.3rem;
+          padding: 0.5rem;
+        }
+
+        input:hover + label {
+          background-color: $link-col;
+        }
+
+        input:checked + label {
+          background-color: $accent-col;
+        }
+      }
+    }
+
+    .create_btn {
+      @extend button;
+      background-color: $accent-col;
+      // width: 259px;
+      border: 2px solid white;
+    }
+
+    .delete {
+      @extend button;
+      background: rgb(194, 43, 43);
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .create_blogpost__form {
+    // background: red;
+    grid-template-areas:
+      "compose"
+      "toolbox";
+
+    .toolbox {
+      margin: 0;
+    }
+  }
+}

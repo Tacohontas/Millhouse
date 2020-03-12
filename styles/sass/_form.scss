@@ -1,0 +1,17 @@
+.title {
+    text-align: center;
+    margin: 1rem;
+}
+
+.form {
+    display: grid;
+    justify-items: center;
+    margin: 1rem;
+
+    .input {
+        padding: 1rem;
+        width: 18rem;
+        margin-bottom: 1rem;
+        font-size: 18px;
+    }
+}

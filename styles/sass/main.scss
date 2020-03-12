@@ -1,0 +1,65 @@
+
+//--- COLORS ---//
+
+$background-color: #c2cbc9;
+$shadow: #535b63;
+$box-col_2: #e2e6d5f8;
+$box-col: #97a8a4;
+$font-col: #fbfbfb;
+$link-col: #768783;
+$box-shadow_small: 1px 0px 13px 0px rgba(146,158,155,1);
+$accent-col: #b38d97;
+
+//--- FONTS ---//
+
+$header-font: 'Josefin Sans', ;
+$font: 'EB Garamond', ;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font;
+  color: $font-col;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    text-decoration: none;
+    list-style: none;
+  }
+
+input{
+  border: none;
+}
+
+button , input[type=submit]{
+  text-align: center;
+  padding: 1rem 3rem;
+  background-color: $box-col;
+  color: white;
+  text-decoration: none;
+  font-family: $header-font;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  border: 1px solid $font-col;
+}
+
+// ERROR BOX
+.error_box{
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: .5rem;
+  }
+
+@import 'home';
+@import 'header';
+@import 'view-blogpost';
+@import 'adminzone';
+@import 'create-blogpost';
+@import 'comments';
+@import 'form';
+@import 'footer';
