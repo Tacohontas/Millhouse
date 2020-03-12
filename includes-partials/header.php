@@ -13,10 +13,15 @@
         }
         ?>
     </title>
+    <!-- Style -->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans&display=swap" rel="stylesheet">
+    <!-- Edit blogpost tool -->
     <script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
+    <!-- JS -->
     <script type="text/javascript" src="js/app.js" defer></script>
+    <!-- Icones -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </head>
@@ -31,27 +36,26 @@
             <ul class="header-nav_links">
 
                 <?php
-                // Admin-nav
+                // --- Om Admin loggar in visas en admin-nav --- //
                 if (@$_SESSION['IsAdmin'] == true) {
                     echo '<li><a href="index.php?page=create">Skapa inlägg</a></li>';
                     echo '<li>|</li>';
                     echo '<li><a href="index.php?page=admin">Admin-sida</a></li>';
                     echo '<li>|</li>';
                 }
-
+                // --- Standard nav för inloggad användare --- //
                 if (isset($_SESSION['Username'])) {
                     echo '<li><a href="index.php?page=search">Sök</a></li>';
                     echo '<li>|</li>';
                     echo '<li><a href="./handlers/logout.php">Logga ut</a></li>';
                 } else {
-                    // Ta bort login.php?
+                    //--- Ej inloggad kan endast logga in och registrera sig --- //
                     echo '<li><a href="index.php?page=home">Logga in</a></li>';
                     echo '<li>|</li>';
                     echo '<li><a href="index.php?page=signup">Registrera</a></li>';
                 };
                 ?>
-
-
+                
             </ul>
 
         </nav>

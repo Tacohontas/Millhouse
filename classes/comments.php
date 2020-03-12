@@ -3,15 +3,15 @@
 
 class COMMENT {
 
-    private $dbh;
+    private $databasehandler;
     private $comments;
 
-    public function __construct($dbh) {
+    public function __construct($databasehandler) {
 
-        $this->databasehandler = $dbh;
+        $this->databasehandler = $databasehandler;
 
     }
-
+    // --- Visar endast kommentarer på det blogginlägget kommentarerna berör ---//
     public function fetchCommentByPostID($postId) {
         $query = "SELECT Comments.Id, Content, Date_posted, PostsId, UsersId, Username FROM Comments
         JOIN Users ON Users.id = UsersId WHERE PostsId = ".$postId.";";

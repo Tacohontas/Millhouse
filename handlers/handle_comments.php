@@ -8,7 +8,7 @@ $userId = (!empty($_POST['userid']) ? $_POST['userid'] : "");
 $postId = (!empty($_POST['postId']) ? $_POST['postId'] : "");
 
 
-// --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
+// --- Tar bort kommentaren om den hårdkodade GET-variabeln "delete" finns --- //
 if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $query = "DELETE FROM Comments WHERE Id = :commentsId;";
     $sth = $dbh->prepare($query);
@@ -47,6 +47,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
 
     $query = "INSERT INTO Comments ( Content, PostsId, UsersId ) VALUES ( :comment, :postId, :userid );";
 
+    //--- Hacker attack prevent --- //
     $sth = $dbh->prepare($query);
     $sth->bindParam(':comment', $comment);
     $sth->bindParam(':postId', $postId);
