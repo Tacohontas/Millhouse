@@ -23,7 +23,6 @@
   margin: 0 auto;
   margin-top: 1rem;
   padding: 0.5rem;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
 
@@ -109,6 +108,18 @@
   .postmenu_post {
     &__actions {
       grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .postmenu_headings {
+    font-size: 70%;
+  }
+
+  .postmenu_post {
+    &__info {
+      font-size: 70%;
     }
   }
 }

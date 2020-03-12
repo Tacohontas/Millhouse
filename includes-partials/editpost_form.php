@@ -10,9 +10,7 @@
             <div class="toolbox__upload">
 
                 <div class="upload_preview">
-                   <!-- $row['img']'s url börjar med en extra punkt som vill ta bort här -->
-                    <img class="upload_preview__img" src="<?= substr($row['img'],1) ?>">
-
+                    <img class="upload_preview__img" src="<?= substr($row['img'], 1) ?>"> <!-- $row['img']'s url börjar med en extra punkt som vill ta bort här -->
                 </div>
 
                 <div class="upload__input">
@@ -25,11 +23,11 @@
 
             <div class="toolbox__select">
                 <h3>VÄLJ KATEGORI</h3>
-                <input type="radio" name="category" id="1" class="input__radio" value="1" <?php if($row['categoriesid'] == 1) echo "checked"; ?> >
+                <input type="radio" name="category" id="1" class="input__radio" value="1" <?php if ($row['categoriesid'] == 1) echo "checked"; ?>>
                 <label for="1">Solglasögon</label>
-                <input type="radio" name="category" id="2" class="input__radio" value="2" <?php if($row['categoriesid'] == 2) echo "checked"; ?> >
+                <input type="radio" name="category" id="2" class="input__radio" value="2" <?php if ($row['categoriesid'] == 2) echo "checked"; ?>>
                 <label for="2">Klockor</label>
-                <input type="radio" name="category" id="3" class="input__radio" value="3" <?php if($row['categoriesid'] == 3) echo "checked"; ?> >
+                <input type="radio" name="category" id="3" class="input__radio" value="3" <?php if ($row['categoriesid'] == 3) echo "checked"; ?>>
                 <label for="3">Inredning</label>
             </div>
 

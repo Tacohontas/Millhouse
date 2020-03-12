@@ -6,28 +6,28 @@ include("./includes-partials/database_connection.php");
 
 <div class="postmenu_wrapper">
 
-<div class="postmenu_headings">
-    <h2>Post-id</h2>
-    <h2>Rubrik</h2>
-    <h2>Bild</h2>
-    <h2>Kategori</h2>
-    <h2>Datum</h2>
-    <h2 class="headings__actions">Actions</h2>
-</div>
+    <div class="postmenu_headings">
+        <h2>Post-id</h2>
+        <h2>Rubrik</h2>
+        <h2>Bild</h2>
+        <h2>Kategori</h2>
+        <h2>Datum</h2>
+        <h2 class="headings__actions">Actions</h2>
+    </div>
 
 
 
 
-<?php
+    <?php
 
-$BlogPosts = new BLOGPOST($dbh);
-$BlogPosts->fetchAll();
+    // Hämtar information från alla inlägg, även de opublicerade.
+    $BlogPosts = new BLOGPOST($dbh);
+    $BlogPosts->fetchAll();
 
-
-foreach ($BlogPosts->getBlogPosts() as $BlogPost) {
-    include("./includes-partials/admin_postmenu.php");
-}
-?>
+    foreach ($BlogPosts->getBlogPosts() as $BlogPost) {
+        include("./includes-partials/admin_postmenu.php");
+    }
+    ?>
 
 </div>
 
