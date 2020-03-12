@@ -4,13 +4,7 @@ include("../includes-partials/database_connection.php");
 $username = $_POST['username'];
 $password = md5($_POST['password']); // md5() krypterar med md5-kryptering. Bra för lösen etc.
 $email = $_POST['email'];
-// $isAdmin = $_POST['is_admin']; // Vi skapar admin-användare manuellt. Inget man kan göra via hemsidan.
-
-
-
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+// Vi skapar admin-användare manuellt. Inget man kan göra via hemsidan.
 
 
 // ERRORZONE INIT
@@ -31,16 +25,19 @@ if (preg_match('/[^A-za-z0-9]/', $username)) {
     $errors = true;
 }
 
+// Ifall användarnamnet är längre än 20 tecken.
 if (strlen($username) > 20) {
     $errorMessages .= 'Användarnamnet är för långt! Får max vara 20 tecken. ';
     $errors = true;
 }
 
+// Ifall lösenordet är för kort (innan kryptering).
 if (strlen($_POST['password']) < 12) {
-    $errorMessages .= 'Ditt lösenord måste innerhålla minst 12 tecken. ';
+    $errorMessages .= 'Ditt lösenord måste innehålla minst 12 tecken. ';
     $errors = true;
 }
 
+// Ifall mailadressen är för lång. 254 är maxvärdet för en mailadress enligt world wide web.
 if (strlen($email) > 254) {
     $errorMessages .= 'Ogiltig mailadress. ';
     $errors = true;
@@ -64,30 +61,30 @@ $resultUsername = $return_array[0]['Username'];
 $resultEmail = $return_array[0]['Email'];
 
 // Använder ej '.=' operatorn här för vi vill inte visa båda felmeddelandena om något av de är true.
-
-if (!empty($resultUsername) && $resultUsername == $username){
+if (!empty($resultUsername) && $resultUsername == $username) {
+    // Om vi får ett icke tomt svar från databasen så betyder det att namnet redan finns.
     $errorMessages = "Användarnamn är upptaget.";
     $errors = true;
     echo $errorMessages;
 }
 
 if (!empty($resultEmail) && $resultEmail == $email) {
+    // Om vi får ett icke tomt svar från databasen så betyder det att mailadressen redan finns.
     $errorMessages = "Det finns redan en användare registrerad på den här mail-adressen";
     $errors = true;
     echo $errorMessages;
-
 }
 
 if ($errors == true) {
     session_start();
+    // Sätter Error-meddelande i SESSION-variabel så vi kan hämta det på annan plats.
     $_SESSION['error_message'] = $errorMessages;
     header("location:../index.php?page=signup&error=true");
     die;
 }
 
 
-// -- FÖRSÖKER SKAPA ANVÄNDARE
-
+// -- SKAPA ANVÄNDARE -- // 
 $query = "INSERT INTO Users(Username, Password, Email) VALUES (:username, :password, :email);";
 $sth = $dbh->prepare($query);
 
@@ -105,13 +102,12 @@ if (!$insertToDB) {
     // Användare skapas! 
     session_start();
 
-    // --- LOGGAS IN --- // 
-
+    // --- PÅBÖRJAD INLOGGNING --- // 
 
     // Sparar användarnamn och lösen i SESSION-variabeln. 
     $_SESSION['Username'] = $username;
     $_SESSION['Password'] = $password;
 
-    // Skicka vidare till login.php.
+    // Skicka vidare till handle_login.php.
     header("location:handle_login.php");
 }

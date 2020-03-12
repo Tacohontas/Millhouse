@@ -5,7 +5,7 @@
             <input type="text" name="blogpost_title" placeholder="Här skriver du din rubrik..." class="title" required maxlength="20">
             <textarea id="content" name="blogpost" cols="30" rows="20" required>
                 <?php
-// Ifall texten var för lång för så klistras den gamla in för att inte behöva skriva om från början.
+                // Ifall texten var för lång för så klistras den gamla in för att inte behöva skriva om från början.
                 echo @$_GET['failedPost'];
 
                 ?>

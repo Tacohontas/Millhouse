@@ -1,9 +1,6 @@
 <?php
 include("../includes-partials/database_connection.php");
 
-
-
-
 $username = (!empty($_POST["username"])) ? $_POST["username"] : "";
 $password = (!empty($_POST["password"])) ? md5($_POST['password']) : "";
 $username = htmlspecialchars($username);
@@ -36,7 +33,6 @@ if (empty($username) || empty($password)) {
     $errorMessages = "Du måste fylla i alla fält. ";
     $errors = true;
 }
-
 
 
 if ($errors == true) {
