@@ -48,4 +48,4 @@ I commits skall vi beskriva kort , men utförligt vad vi gjort.<br>
 Sedan mergar vi nya branchen med master när vi är färdiga.<br>
 
 ### Om det inte funkar att ladda upp fil!
-Ändra read/write-rättigheter på din mac/pc på ../images/uploads så kommer det funka superduper!
+Ändra read/write-rättigheter på din mac/pc på `../images/uploads` så kommer det funka superduper!
