@@ -3,8 +3,6 @@ DROP TABLE IF EXISTS `Posts`;
 DROP TABLE IF EXISTS `Users`;
 DROP TABLE IF EXISTS `Categories`;
 
-
-
 CREATE Table Categories(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(20) NOT NULL,
@@ -46,11 +44,10 @@ CREATE Table Comments(
     FOREIGN KEY(UsersId) REFERENCES Users(Id)
     ) engine = INNODB;
     
-  INSERT INTO Categories(Name) VALUES ("Sunglasses");
-  INSERT INTO Categories(Name) VALUES ("Watches");
-  INSERT INTO Categories(Name) VALUES ("Interior");
+INSERT INTO Categories(Name) VALUES ("Sunglasses");
+INSERT INTO Categories(Name) VALUES ("Watches");
+INSERT INTO Categories(Name) VALUES ("Interior");
 
 INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ("admin", "5f4dcc3b5aa765d61d8327deb882cf99", "admin@millhouse.com", 1);
-
 INSERT INTO Users(Username, Password, Email, IsAdmin) VALUES ("user", "5f4dcc3b5aa765d61d8327deb882cf99", "user@millhouse.com", 0);
 

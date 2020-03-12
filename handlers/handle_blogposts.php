@@ -1,15 +1,6 @@
   <?php
     include("../includes-partials/database_connection.php");
 
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-
-    echo "<pre>";
-    print_r($_FILES);
-    echo "</pre>";
-
-
     // -- GET VARIABLAR -- // 
     @$action = @$_GET['action'];
 
@@ -18,10 +9,8 @@
     $errorMessages = "";
 
     // --- Publicera / dölj inlägg --- // 
-
     if ($action == "hide" || $action == "publish") {
         $isPublished = ($action == 'hide') ? $isPublished = 0 : $isPublished = 1;
-        // Här hämtar vi vår hårdkodade _GET-variabel
         $query = "UPDATE Posts SET IsPublished = :isPublished WHERE Id = :postsId ;";
         $sth = $dbh->prepare($query);
         $postsId = $_GET['id'];
@@ -36,7 +25,7 @@
 
     // --- Tar bort inlägg om den hårdkodade GET-variabeln "delete" finns --- //
     if (isset($_GET['action']) && $_GET['action'] == "delete") {
-        // Här hämtar vi vår hårdkodade _GET-variabel
+
         $query = "DELETE FROM Comments WHERE PostsId = :postsId; DELETE FROM Posts WHERE Id = :postsId;";
         $sth = $dbh->prepare($query);
         $postsId = $_GET['id'];
@@ -76,7 +65,7 @@
             if ($fileSize > 0) {
                 if (in_array($fileActualExt, $allowed)) {
                     if ($fileError === 0) {
-                        if ($fileSize < 5000000) {
+                        if ($fileSize < 2000000) {
                             $fileNameNew = md5(reset($fileExt)) . "." . $fileActualExt;
                             $fileDestination = '../images/uploads/' . $fileNameNew;
                             if ($fileSize == filesize($fileDestination)) {
@@ -94,7 +83,7 @@
                                 move_uploaded_file($fileTmpName, $fileDestination);
                             }
                         } else {
-                            $errorMessages .= "Filen är för stor <br />";
+                            $errorMessages .= "Filen är för stor. Den får vara max 2mb. <br />";
                             $errors = true;
                         };
                     } else {
@@ -113,7 +102,7 @@
         //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
         $title = htmlspecialchars($title);
         // I text-areafältet använder vi oss av CKEDITOR som har inbyggd hackerattack-lösning!
-        // $blogpost = htmlspecialchars($blogpost);
+
 
         //--- ERROR meddelanden ---//
 
@@ -147,12 +136,14 @@
 
             session_start();
             $_SESSION['error_message'] = $errorMessages;
-            // Ifall fält lämnas tomma i edit-miljön:
             if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
+                // Om det blir errors i create post-miljön:
+
                 header("location:../index.php?page=edit&postId={$_POST['postId']}&error=true");
                 die;
             } else {
                 // Om det blir errors i create post-miljön:
+
                 // Ta bort bild ifall den ändå lyckats laddats upp.
                 unlink($fileDestination);
 
@@ -165,8 +156,8 @@
 
         //--- QUERIES till DB ---//
 
-        // Ifall inlägget kommer från edit-blogpost:
         if (isset($_GET['updatePost']) && $_GET['updatePost'] == true) {
+            // Ifall inlägget kommer från edit-blogpost:
 
             $query = "UPDATE PostsSET Title = :title, Content = :blogpost, CategoriesId = :catid WHERE Id = :postId; ";
             $sth = $dbh->prepare($query);
@@ -185,13 +176,15 @@
             $sth->bindParam(':postId', $_POST['postId']); // Påbörjad Hacker attack-prevent
 
 
-            // Ifall inlägget kommer från create-blogpost
         } else {
+            // Ifall inlägget kommer från create-blogpost
+
             $query = "INSERT INTO Posts ( Title, Content, IMG, CategoriesId, Usersid) VALUES (:title, :blogpost, :blogpostImg, :catid, 1);";
             //--- Endast admin kan skapa blogginlägg, därav alltid 1 ---//  
             $sth = $dbh->prepare($query);
             $sth->bindParam(':blogpostImg', $fileDestination); // Påbörjad Hacker attack-prevent
         }
+
         //--- Hacker attack prevent - Bind variablerna ---//
         $sth->bindParam(':title', $title);
 
@@ -201,17 +194,13 @@
 
 
         $return = $sth->execute();
-        echo "<pre>";
-        $sth->debugDumpParams();
-        echo "</pre>";
 
         if (!$return) {
+            // Ifall inserten misslyckas, skriv ut error:
             echo "\nPDO::errorInfo():\n";
             print_r($dbh->errorInfo());
         } else {
-            // die;
             header("location:../index.php?page=admin");
-            echo "det funka";
             die;
         };
     }
