@@ -1,4 +1,4 @@
-<div class="leave_comment-container">
+<div class="leave_comment-container" id="comment">
     <form class="comment_form" method="POST" action="./handlers/handle_comments.php">
 
         <input type="hidden" name="postId" value="<?=$_GET['postId'] ?>">

@@ -16,7 +16,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     $sth->bindParam(':commentsId', $commentsId);
     $return = $sth->execute();
 
-    header("location:../index.php?page=view&postId={$_GET['postId']}");
+    header("location:../index.php?page=view&postId={$_GET['postId']}#comment");
 } else {
 
     //--- Hacker attack prevent - Det går ej att lägga in HTML-kod i textfälten ---//
@@ -58,6 +58,6 @@ if (isset($_GET['action']) && $_GET['action'] == "delete") {
     if (!$return) {
         print_r($dbh->errorInfo());
     } else {
-        header("location:../index.php?page=view&postId={$postId}");
+        header("location:../index.php?page=view&postId={$postId}#comment");
     };
 }
