@@ -11,6 +11,8 @@ include("./includes-partials/database_connection.php");
     </form>
 </div>
 <?php
+
+// --- Om searchQ finns med som GET-variabel visas de blogginlägg som innehåller serachQ ordet --- //
 if (!empty($_GET['searchQ'])) {
 
     echo "<h2 class='title'>Sökresultat</h2>";
@@ -31,14 +33,14 @@ if (!empty($_GET['searchQ'])) {
             echo "</div>";
         };
     } else {
+
+        // --- Om ordet inte hittades får du ett error meddelande --- //
         $errorMessages = "Hoppsan! Det finns inga inlägg som innehåller '{$_GET['searchQ']}'.";
         $_SESSION['error_message'] = $errorMessages;
         header("location:./index.php?page=search&error=true");
         die;
     };
-} else {
-    return false;
-}
+} 
 
 ?>
 

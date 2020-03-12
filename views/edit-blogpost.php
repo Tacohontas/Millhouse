@@ -14,8 +14,6 @@ if (isset($_SESSION['Username']) && $_SESSION['IsAdmin'] == 1) {
     $getquery = "SELECT id, title, content, img, categoriesid FROM Posts WHERE Id = " . $_GET['postId'] . ";";
     $dataFromDB = $dbh->query($getquery);
 
-
-
     // -- Hämtar inlägg som skall redigeras
 
     while ($row = $dataFromDB->fetch(PDO::FETCH_ASSOC)) {

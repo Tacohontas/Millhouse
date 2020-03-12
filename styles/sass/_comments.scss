@@ -57,16 +57,15 @@
 
 //Lämna kommentar 
 .leave_comment-container {
-    border-top: 20px solid $shadow;
+    border-top: 15px solid grey;
     display: grid;
     justify-items: center;
-    background-color: $box-col;
 
 }
 .comment_form {
-    background-color: $box-col;
     font-family: $font;
     width: 37rem;
+    margin-bottom: 1rem;
     
     p {
         text-transform: capitalize;
